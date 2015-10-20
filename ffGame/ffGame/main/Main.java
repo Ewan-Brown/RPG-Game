@@ -10,7 +10,8 @@ import weapon.Weapon;
 
 
 public class Main{
-	int temp = 1;
+	//TODO DELETE THIS WHEN DONE WITH GIT
+	int temp = 2;
 
 	public enum Difficulty{
 		
