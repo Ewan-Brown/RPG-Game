@@ -11,9 +11,8 @@ import weapon.Weapon;
 
 public class Main{
 
-
+	int DELETETHIS = 8;
 	public enum Difficulty{
-		
 		Easy("Easy",0.5),
 		Normal("Normal", 1),
 		Hard("Hard", 1.5),
@@ -22,6 +21,7 @@ public class Main{
 
 		String mode;
 		double multiplier;
+		
 		Difficulty(String mode, double mult){
 			this.mode = mode;
 			this.multiplier = mult;
