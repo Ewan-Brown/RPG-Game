@@ -1,6 +1,7 @@
 package entities;
 
 import main.GameAlgorithms;
+import weapon.Weapon;
 
 public class EntityPlayer extends EntityBase{
 
@@ -31,9 +32,27 @@ public class EntityPlayer extends EntityBase{
 		this.alive = false;
 		GameAlgorithms.PlayerStats(this);
 	}
+	public void onKillMonster(EntityMonster monster){
+		this.kills =+ 1;
+		giveExp();
+		tryGiveWeapon(monster.getWeapon());
+	}
+	public void tryGiveWeapon(Weapon monsterWeapon){
+		Weapon playerWeapon = this.getWeapon();
+		if(monsterWeapon != null){
+			if(playerWeapon != null){
+				if(monsterWeapon.getDamage() > playerWeapon.getDamage()){
+					this.giveWeapon(monsterWeapon);
+				}
+			}
+			else{
+				this.giveWeapon(monsterWeapon);
+			}
+		}
+	}
 	public void giveExp(){
 		System.out.println("XPED");
-		this.xp =+ 25;
+		this.xp = this.xp + 25;
 		//this.xp =+ EntityStats.EXPERIENCE_DROPS;
 		if (this.xp >= EntityStats.EXP_PER_LEVEL){
 			this.level =+ 1;

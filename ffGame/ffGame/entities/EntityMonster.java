@@ -17,7 +17,8 @@ public class EntityMonster extends EntityBase {
 		//TODO health and damage randomizer
 		this.alive = true;
 		if(GameAlgorithms.shouldSpawnWeapon()){
-			this.weapon = new Weapon();
+			Weapon weapon = new Weapon();
+			this.giveWeapon(weapon);
 		}
 	}
 	public void onDeath(){

@@ -132,8 +132,7 @@ public class Main{
 	}
 	public static void onPlayerWin(EntityPlayer player,EntityMonster monster,Difficulty difficulty){
 		Print.printDefeated(player,monster);
-		GameAlgorithms.givePlayerLoot(player, monster);
-		GameAlgorithms.sleep(1000L);
+		player.onKillMonster(monster);
 		battleActive(player, monster,difficulty);
 	}
 

@@ -65,26 +65,8 @@ public class GameAlgorithms {
 //		}
 		return true;
 	}
-	public static void givePlayerLoot(EntityPlayer player, EntityMonster monster){
-		System.out.println("LOOTED");
-		player.giveExp();
-//		player.healPlayer(20);
-//		player.kills =+ 1;
-		Weapon monsterWeapon = monster.getWeapon();
-		Weapon playerWeapon = player.getWeapon();
-		if(monsterWeapon != null){
-			if(playerWeapon != null){
-				if(monsterWeapon.getDamage() > playerWeapon.getDamage()){
-					player.giveWeapon(monsterWeapon);
-				}
-			}
-			else{
-				player.giveWeapon(monsterWeapon);
-			}
-		}
-	}
 	public static void PlayerStats(EntityPlayer player){
-		Weapon weapon = player.weapon;
+		Weapon weapon = player.getWeapon();
 		int xp = player.xp;
 		int kills = player.kills;
 		int level = player.level;

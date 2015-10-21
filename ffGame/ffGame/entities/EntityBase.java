@@ -10,7 +10,7 @@ public class EntityBase implements EntityInterface{
 	public int damageRange;
 	public String name;
 	public boolean alive;
-	public Weapon weapon;
+	private Weapon weapon;
 	
 	EntityBase(String name,int health,int damage, int damageRange){
 		this.name = name;
