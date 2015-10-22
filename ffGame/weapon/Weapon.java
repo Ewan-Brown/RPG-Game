@@ -9,7 +9,6 @@ public class Weapon {
 	String type;
 	Modifier modifier = null;
 	public static String[] WEAPON_TYPE = {"Sword","Spear","Dagger","War Hammer","Battle Axe","Stick","Crossbow","Bow","Slingshot","BAZOOKA!","Damascus Steel Karambit","Javelin","Great Sword","Long Bow","Big Sharp Thing"}; 
-	
 	public Weapon(){
 		this.type = getRandomType();
 		this.modifier = getRandomModifier();
