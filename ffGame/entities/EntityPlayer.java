@@ -24,8 +24,8 @@ public class EntityPlayer extends EntityBase{
 //		
 //	}
 	public void healPlayer(int heal){
-		if(heal + this.health > EntityPlayer.baseHealth){
-			this.health =+ heal;;
+		if(heal + this.health < EntityPlayer.baseHealth){
+			this.health = this.health + heal;;
 		}
 	}
 	public void onDeath(){
@@ -33,6 +33,8 @@ public class EntityPlayer extends EntityBase{
 		GameAlgorithms.PlayerStats(this);
 	}
 	public void onKillMonster(EntityMonster monster){
+		
+		this.healPlayer(20);
 		this.kills =+ 1;
 		giveExp();
 		tryGiveWeapon(monster.getWeapon());

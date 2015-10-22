@@ -24,7 +24,7 @@ public class GameAlgorithms {
 		return player;
 	}
 	public static EntityMonster RandomMonster(Difficulty difficulty){
-		EntityMonster monster = new EntityMonster("Monster",difficulty);
+		EntityMonster monster = new EntityMonster("NULL_MONSTER_NAME",difficulty);
 		return monster;
 	}
 	public static void tryAttack(EntityBase attacker, EntityBase victim){
