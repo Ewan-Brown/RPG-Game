@@ -34,10 +34,14 @@ public class EntityBase implements EntityInterface{
 		}
 		
 	}
-	
+	public int getWeaponDamage(){
+		return getWeapon().getDamage();
+	}
+	public int getRawDamage(){
+		return this.damage;
+	}
 	public int getDamage(){
-		return (this.weapon == null) ? this.damage : this.damage + getWeapon().getDamage();
-		//return this.damage + getWeapon().getDamage();
+		return (getWeapon() == null) ? getRawDamage() : getRawDamage() + getWeaponDamage();
 	}
 	public Weapon getWeapon() {
 		// TODO Auto-generated method stub

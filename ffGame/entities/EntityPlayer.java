@@ -14,15 +14,9 @@ public class EntityPlayer extends EntityBase{
 	
 	public EntityPlayer(String name){
 		super(name,baseHealth,damage,damageRange);
-		//TODO health and damage randomizer
 		this.alive = true;
 
 	}
-//	public void onEnemyKilled(){
-//		this.kills =+ 1;
-//		giveExp();
-//		
-//	}
 	public void healPlayer(int heal){
 		if(heal + this.health < EntityPlayer.baseHealth){
 			this.health = this.health + heal;;

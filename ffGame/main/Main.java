@@ -56,6 +56,7 @@ public class Main{
 	
 	public static void main(String[] args) {
 		gameStart();
+		
 	}
 	public static void gameStart(){
 		//select difficulty
@@ -73,7 +74,6 @@ public class Main{
 	}
 	
 	public static void battleStart(Difficulty difficulty){
-		//battletype = player vs monster OR monster vs monster
 		//initialize monsters/player
 		//begin fight!
 		
@@ -89,6 +89,7 @@ public class Main{
 		
 	}
 	public static void battleActive(EntityPlayer player, EntityMonster monster,Difficulty difficulty){
+		//loop of turn based attacks, X hits Y, Y hits X etc.
 		GameAlgorithms.sleep(500L);
 		
 		if(!monster.isAlive()){

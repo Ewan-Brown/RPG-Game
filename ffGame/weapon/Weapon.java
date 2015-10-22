@@ -15,7 +15,7 @@ public class Weapon {
 		this.modifier = getRandomModifier();
 		this.damage = (int) (WeaponConstants.BASE_WEAPON_DAMAGE * modifier.multiplier);
 		this.name = modifier.name+" "+type;
-		System.out.println(name);
+		System.out.println(name + " Created!");
 	}
 	
 	
