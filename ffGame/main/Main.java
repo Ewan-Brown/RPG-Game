@@ -11,7 +11,6 @@ import weapon.Weapon;
 
 public class Main{
 
-	int DELETETHIS = 8;
 	public enum Difficulty{
 		Easy("Easy",0.5),
 		Normal("Normal", 1),
@@ -29,8 +28,8 @@ public class Main{
 		public double getMult(){
 			return multiplier;
 		}
-		public int mult(int num){
-			return (int)Math.round(this.getMult()*num);
+		public int mult(int a){
+			return (int)Math.round(this.getMult()*a);
 		}
 		static public Difficulty getDifficulty(int a){
 			Difficulty difficulty = null;
