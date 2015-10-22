@@ -18,46 +18,56 @@ public class EntityPlayer extends EntityBase{
 
 	}
 	public void healPlayer(int heal){
-		if(heal + this.health < EntityPlayer.baseHealth){
-			this.health = this.health + heal;;
+		if(heal + health < EntityPlayer.baseHealth){
+			health = health + heal;;
 		}
 	}
 	public void onDeath(){
-		this.alive = false;
+		alive = false;
 	}
 	public void onKillMonster(EntityMonster monster){
 		
-		this.healPlayer(20);
-		this.kills = kills + 1;
+		healPlayer(20);
+		kills = kills + 1;
 		giveExp();
 		tryGiveWeapon(monster.getWeapon());
 	}
 	public void tryGiveWeapon(Weapon monsterWeapon){
-		Weapon playerWeapon = this.getWeapon();
+		Weapon playerWeapon = getWeapon();
 		if(monsterWeapon != null){
 			if(playerWeapon != null){
 				if(monsterWeapon.getDamage() > playerWeapon.getDamage()){
-					this.giveWeapon(monsterWeapon);
+					giveWeapon(monsterWeapon);
 				}
 			}
 			else{
-				this.giveWeapon(monsterWeapon);
+				giveWeapon(monsterWeapon);
 			}
 		}
 	}
 	public void giveExp(){
-		this.xp = this.xp + 25;
-		//this.xp =+ EntityStats.EXPERIENCE_DROPS;
-		if (this.xp >= EntityStats.EXP_PER_LEVEL){
-			this.level = level + 1;
-			this.xp = 0;
-			System.out.println("----LEVEL UP!!!----");
-			this.baseHealth = this.baseHealth + 10;
-			this.damage = this.damage + 5;
-			this.health = baseHealth;
-			System.out.println(baseHealth+" BaseHealth");
+		if(level < 5){
+			xp = xp + bonusExp();
+			//xp =+ EntityStats.EXPERIENCE_DROPS;
+			if (xp >= EntityStats.EXP_PER_LEVEL){
+				level = level + 1;
+				xp = xp - 100;
+				System.out.println("----LEVEL UP!!!----");
+				baseHealth = baseHealth + 10;
+				damage = damage + 5;
+				health = baseHealth;
+				System.out.println(baseHealth+" BaseHealth");
+			}
+			System.out.println(xp + " CURRENT XP");
 		}
-		System.out.println(xp + " CURRENT XP");
+		else{
+			System.out.println("player has reached Max level!");
+		}
+	}
+	public int bonusExp(){
+		int Base = 25;
+		int Rand = (int) (Math.round(Math.random()) * 5);
+		return Base + Rand;
 	}
 	
 }

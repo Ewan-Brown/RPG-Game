@@ -74,9 +74,9 @@ public class GameAlgorithms {
 		String monstername = monster.getName();
 		int pick = new Random().nextInt(DeathLines.length);
 		String line = DeathLines[pick];
-		String substring = line.substring(0,4);
+		String substring = monstername.substring(0, 4);
 		if(!(substring == "The ")){
-			line = "A "+line;
+			line = line+" A";
 	
 		}
 		return playername+" "+line+" "+monstername;

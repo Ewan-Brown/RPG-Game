@@ -64,6 +64,7 @@ public class Main{
 	}
 	public void RunGame(){
 		while(true){
+			GameOn = true;
 			gameStart();
 			battleStart();
 			while(GameOn == true){
