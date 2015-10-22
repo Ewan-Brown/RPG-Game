@@ -73,17 +73,20 @@ public class GameAlgorithms {
 		String playername = player.getName();
 		String monstername = monster.getName();
 		int pick = new Random().nextInt(DeathLines.length);
-		String line = playername+" "+DeathLines[pick]+" "+monstername;
-				
-		return line;
+		String line = DeathLines[pick];
+		String substring = line.substring(0,4);
+		if(!(substring == "The ")){
+			line = "A "+line;
+	
+		}
+		return playername+" "+line+" "+monstername;
 	}
 	public static void PlayerStats(EntityPlayer player,EntityMonster monster){
 		Weapon weapon = player.getWeapon();
 		int xp = player.xp;
 		int kills = player.kills;
 		int level = player.level;
-		System.out.println(getRandomDeathString(player,monster));
-		System.out.println(player.name +" Died"+ ((weapon == null) ? "!" : " Wielding his "+weapon.getName()));
+		System.out.println(getRandomDeathString(player,monster)+((weapon == null) ? "!" : ", Wielding his "+weapon.getName()));
 		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage());
 		System.out.println("after brutally slaying "+kills+" Monsters!");
 		

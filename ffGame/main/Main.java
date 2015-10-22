@@ -48,24 +48,47 @@ public class Main{
 			return difficulty;
 		}
 	}
-	static String playerName;
-	static boolean fastMode;
-	static EntityBase loser;
-	static EntityBase winner;
+	String playerName;
+	boolean fastMode;
+	EntityBase loser;
+	EntityBase winner;
+	Difficulty difficulty;
+	EntityPlayer player;
+	EntityMonster monster;
+	boolean GameOn = true;
 
 	
 	public static void main(String[] args) {
-		gameStart();
-		
+		Main game = new Main();
+		game.RunGame();
 	}
-	public static void gameStart(){
+	public void RunGame(){
+		while(true){
+			this.gameStart();
+			this.battleStart();
+			while(GameOn == true){
+				this.battleActive();
+				boolean a = this.battleEnd();
+				if(a == true){
+					this.onPlayerWin();
+				}
+				if(a == false){
+					this.onPlayerLose();
+					GameOn = false;
+				}
+			}
+		}
+	}
+	public Main(){
+	}
+	public void gameStart(){
 		//select difficulty
 		//enter playername
 		//enter battleType
 		Scanner scan = new Scanner(System.in);
 		System.out.println("enter difficulty: 1 easy, 2 normal, 3 hard, 4 uber");
 		int a = scan.nextInt();
-		Difficulty difficulty = Difficulty.getDifficulty(a);
+		difficulty = Difficulty.getDifficulty(a);
 		GameAlgorithms.sleep(fastMode);
 		System.out.println("enter Player's name");
 		playerName = scan.next();
@@ -74,26 +97,22 @@ public class Main{
 			fastMode = true;
 		}
 		
-		battleStart(difficulty);
-		
 	}
 	
-	public static void battleStart(Difficulty difficulty){
+	public void battleStart(){
 		//initialize monsters/player
 		//begin fight!
 		
-		EntityPlayer player;
-		EntityMonster monster;
+
 		GameAlgorithms.sleep(fastMode);
-			player = GameAlgorithms.PlayerSpawn(playerName);
-			monster = GameAlgorithms.RandomMonster(difficulty);
-			player.PrintStats();
-			monster.PrintStats();
-			GameAlgorithms.sleep(fastMode);
-			battleActive(player,monster,difficulty);
+		player = GameAlgorithms.PlayerSpawn(playerName);
+		monster = GameAlgorithms.RandomMonster(difficulty);
+		player.PrintStats();
+		monster.PrintStats();
+		GameAlgorithms.sleep(fastMode);
 		
 	}
-	public static void battleActive(EntityPlayer player, EntityMonster monster,Difficulty difficulty){
+	public void battleActive(){
 		//loop of turn based attacks, X hits Y, Y hits X etc.
 		GameAlgorithms.sleep(fastMode);
 		
@@ -116,29 +135,26 @@ public class Main{
 			GameAlgorithms.sleep(fastMode);
 			
 		}while(f1 && f2);
-		
-		battleEnd(player, monster, f1, f2,difficulty);
 	}
-	public static void battleEnd(EntityPlayer player, EntityMonster monster, boolean f1, boolean f2,Difficulty difficulty){
-		//player vs monster
-		//give player drops!
-		if(f1){
-			onPlayerWin(player,monster,difficulty);
+	public boolean battleEnd(){
+		boolean a = true;
+		if(player.isAlive()){
+			a = true;
 		}
-		if(f2){
-			onPlayerLose(player,monster);
+		if(!(player.isAlive())){
+			a = false;
 		}
+		return a;
 	}
-	public static void onPlayerLose(EntityPlayer player,EntityMonster monster){
+	public void onPlayerLose(){
 		System.out.println("Game Over!");
 		GameAlgorithms.PlayerStats(player, monster);
 		GameAlgorithms.sleep(fastMode);
-		main(null);
+//		main(null);
 	}
-	public static void onPlayerWin(EntityPlayer player,EntityMonster monster,Difficulty difficulty){
+	public void onPlayerWin(){
 		Print.printDefeated(player,monster);
 		player.onKillMonster(monster);
-		battleActive(player, monster,difficulty);
 	}
 
 }
