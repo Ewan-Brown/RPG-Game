@@ -72,7 +72,7 @@ public class GameAlgorithms {
 		int xp = player.xp;
 		int kills = player.kills;
 		int level = player.level;
-		System.out.println(player.name +" Died"+ ((weapon == null) ? "!" : " Wielding his"+weapon.getName()));
+		System.out.println(player.name +" Died"+ ((weapon == null) ? "!" : " Wielding his "+weapon.getName()));
 		System.out.println("with "+level+" Levels and "+xp+" Experience");
 		System.out.println("after brutally slaying "+kills+" Monsters!");
 		

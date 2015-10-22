@@ -29,7 +29,7 @@ public class EntityPlayer extends EntityBase{
 	public void onKillMonster(EntityMonster monster){
 		
 		this.healPlayer(20);
-		this.kills =+ 1;
+		this.kills = kills + 1;
 		giveExp();
 		tryGiveWeapon(monster.getWeapon());
 	}
