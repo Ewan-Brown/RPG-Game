@@ -11,12 +11,14 @@ import entities.EntityPlayer;
 
 public class GameAlgorithms {
 	
-	public static void sleep(long millis){
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public static void sleep(boolean fastMode){
+		if(!fastMode){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	public static EntityPlayer PlayerSpawn(String name){
