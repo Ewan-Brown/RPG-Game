@@ -22,14 +22,14 @@ public class Main{
 		double multiplier;
 		
 		Difficulty(String mode, double mult){
-			this.mode = mode;
-			this.multiplier = mult;
+			mode = mode;
+			multiplier = mult;
 		}
 		public double getMult(){
 			return multiplier;
 		}
 		public int mult(int a){
-			return (int)Math.round(this.getMult()*a);
+			return (int)Math.round(getMult()*a);
 		}
 		static public Difficulty getDifficulty(int a){
 			Difficulty difficulty = null;
@@ -64,16 +64,16 @@ public class Main{
 	}
 	public void RunGame(){
 		while(true){
-			this.gameStart();
-			this.battleStart();
+			gameStart();
+			battleStart();
 			while(GameOn == true){
-				this.battleActive();
-				boolean a = this.battleEnd();
+				battleActive();
+				boolean a = battleEnd();
 				if(a == true){
-					this.onPlayerWin();
+					onPlayerWin();
 				}
 				if(a == false){
-					this.onPlayerLose();
+					onPlayerLose();
 					GameOn = false;
 				}
 			}
