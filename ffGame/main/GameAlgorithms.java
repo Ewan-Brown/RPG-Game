@@ -11,6 +11,8 @@ import entities.EntityPlayer;
 
 public class GameAlgorithms {
 	
+	public static String [] DeathLines = {"was ripped apart by","was torn to pieces by","was eaten by","had his innards turned into outtards by"};
+	
 	public static void sleep(boolean fastMode){
 		if(!fastMode){
 			try {
@@ -67,13 +69,22 @@ public class GameAlgorithms {
 //		}
 		return true;
 	}
-	public static void PlayerStats(EntityPlayer player){
+	public static String getRandomDeathString(EntityPlayer player, EntityMonster monster){
+		String playername = player.getName();
+		String monstername = monster.getName();
+		int pick = new Random().nextInt(DeathLines.length);
+		String line = playername+" "+DeathLines[pick]+" "+monstername;
+				
+		return line;
+	}
+	public static void PlayerStats(EntityPlayer player,EntityMonster monster){
 		Weapon weapon = player.getWeapon();
 		int xp = player.xp;
 		int kills = player.kills;
 		int level = player.level;
+		System.out.println(getRandomDeathString(player,monster));
 		System.out.println(player.name +" Died"+ ((weapon == null) ? "!" : " Wielding his "+weapon.getName()));
-		System.out.println("with "+level+" Levels and "+xp+" Experience");
+		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage());
 		System.out.println("after brutally slaying "+kills+" Monsters!");
 		
 	}

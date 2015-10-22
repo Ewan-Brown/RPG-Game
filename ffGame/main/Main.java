@@ -69,10 +69,11 @@ public class Main{
 		GameAlgorithms.sleep(fastMode);
 		System.out.println("enter Player's name");
 		playerName = scan.next();
-		System.out.println("Fastmode?");
+		System.out.println("Fastmode? press 1 for fastmode");
 		if (scan.nextInt() == 1){
 			fastMode = true;
 		}
+		
 		battleStart(difficulty);
 		
 	}
@@ -130,7 +131,7 @@ public class Main{
 	}
 	public static void onPlayerLose(EntityPlayer player,EntityMonster monster){
 		System.out.println("Game Over!");
-//		Print.printEndStats(player);
+		GameAlgorithms.PlayerStats(player, monster);
 		GameAlgorithms.sleep(fastMode);
 		main(null);
 	}

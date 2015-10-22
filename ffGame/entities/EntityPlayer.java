@@ -24,7 +24,6 @@ public class EntityPlayer extends EntityBase{
 	}
 	public void onDeath(){
 		this.alive = false;
-		GameAlgorithms.PlayerStats(this);
 	}
 	public void onKillMonster(EntityMonster monster){
 		
