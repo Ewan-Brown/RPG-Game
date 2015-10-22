@@ -5,7 +5,7 @@ import weapon.Weapon;
 
 public class EntityPlayer extends EntityBase{
 
-	static int baseHealth = entities.EntityStats.PLAYER_HEALTH ;
+	public static int baseHealth = entities.EntityStats.PLAYER_HEALTH ;
 	static int damage = entities.EntityStats.PLAYER_DAMAGE;
 	static int damageRange = entities.EntityStats.PLAYER_DAMAGERANGE;;
 	public int kills = 0;
@@ -56,9 +56,11 @@ public class EntityPlayer extends EntityBase{
 		this.xp = this.xp + 25;
 		//this.xp =+ EntityStats.EXPERIENCE_DROPS;
 		if (this.xp >= EntityStats.EXP_PER_LEVEL){
-			this.level =+ 1;
+			this.level = level + 1;
+			this.xp = 0;
 			System.out.println("----LEVEL UP!!!----");
-			EntityPlayer.baseHealth =+ 10;
+			this.baseHealth = this.baseHealth + 10;
+			this.damage = this.damage + 5;
 			this.health = baseHealth;
 			System.out.println(baseHealth+" BaseHealth");
 		}
