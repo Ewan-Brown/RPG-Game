@@ -35,6 +35,18 @@ public class EntityMonster extends EntityBase {
 	    String name = MONSTER_NAMES[pick];
 	    return name;
 	}
+	public void onAttacked(int dmg) {
+		this.health -= dmg;
+		//FIX THE THE THING ISSUE!
+		System.out.println(this.name+" was hit for "+dmg+" damage!");
+		if(health <= 0){
+			onDeath();
+		}
+		else if(health <= 20){
+			System.out.println(name+"'s Health is critically low!!!");
+		}
+		
+	}
 
 
 	
