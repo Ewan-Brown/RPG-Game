@@ -2,14 +2,16 @@ package main;
 
 public class Stage {
 	
-	int stageNum;
+	int stageNum = 0;
 	int monstersKilled;
 	int monstersRequired;
 	int monstersReqIncrement = 5;
-	double mult;
 	
 	public double getMult(){
-		return this.mult;
+		double mult;
+		//to make sure that mult equals > 1!
+		mult = (stageNum * 0.5) + 1;
+		return mult;
 	}
 	public Stage(){
 		int stageNum = 1;
@@ -17,10 +19,14 @@ public class Stage {
 	}
 	public void onMonsterKilled(){
 		monstersKilled += 1;
+		if(monstersKilled == monstersRequired){
+			this.onStageUp();
+		}
 		
 	}
 	public void onStageUp(){
-		
+		monstersKilled = 0;
+		stageNum += 1;
 	}
 	public void printStats(){
 		System.out.println("Monsters Killed "+monstersKilled+"/"+monstersRequired);

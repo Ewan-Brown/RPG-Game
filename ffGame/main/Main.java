@@ -67,6 +67,7 @@ public class Main{
 	public static void main(String[] args) {
 		Main game = new Main();
 		game.RunGame();
+
 	}
 	public void RunGame(){
 		while(true){
