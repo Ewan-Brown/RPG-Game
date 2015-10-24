@@ -56,6 +56,12 @@ public class Main{
 	EntityPlayer player;
 	EntityMonster monster;
 	boolean GameOn = true;
+	Stage currentStage;
+	
+	public int getMult(int a){
+		double b  = difficulty.getMult() * currentStage.getMult(); 
+		return (int) Math.round(b * a);
+	}
 
 	
 	public static void main(String[] args) {
