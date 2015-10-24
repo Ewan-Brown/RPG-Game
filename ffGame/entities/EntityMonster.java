@@ -37,7 +37,6 @@ public class EntityMonster extends EntityBase {
 	}
 	public void onAttacked(int dmg) {
 		this.health -= dmg;
-		//FIX THE THE THING ISSUE!
 		System.out.println(this.name+" was hit for "+dmg+" damage!");
 		if(health <= 0){
 			onDeath();
