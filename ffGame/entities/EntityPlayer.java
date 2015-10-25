@@ -18,8 +18,9 @@ public class EntityPlayer extends EntityBase{
 
 	}
 	public void healPlayer(int heal){
-		if(heal + health < EntityPlayer.baseHealth){
+		if(heal + health <= EntityPlayer.baseHealth){
 			health = health + heal;;
+			System.out.println(name+" was healed for "+heal+"HP!");
 		}
 	}
 	public void onDeath(){
@@ -44,6 +45,10 @@ public class EntityPlayer extends EntityBase{
 				giveWeapon(monsterWeapon);
 			}
 		}
+	}
+	public void onStageUp(){
+		healPlayer(15);
+		giveExp();
 	}
 	public void giveExp(){
 		if(level < 5){

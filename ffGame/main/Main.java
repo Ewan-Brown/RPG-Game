@@ -102,7 +102,7 @@ public class Main{
 		System.out.println("enter Player's name");
 		playerName = scan.next();
 		System.out.println("Fastmode? press 1 for fastmode");
-		if (scan.nextInt() == 1){
+		if (scan.next() == "1"){
 			fastMode = true;
 		}
 		
@@ -158,12 +158,12 @@ public class Main{
 	}
 	public void onPlayerLose(){
 		System.out.println("Game Over!");
-		GameAlgorithms.PlayerStats(player, monster);
+		GameAlgorithms.PlayerStats(player, monster,currentStage);
 		GameAlgorithms.sleep(fastMode);
 //		main(null);
 	}
 	public void onPlayerWin(){
-		currentStage.onMonsterKilled();
+		currentStage.onMonsterKilled(player);
 		Print.printDefeated(player,monster);
 		player.onKillMonster(monster);
 	}
