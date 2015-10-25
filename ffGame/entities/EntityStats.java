@@ -11,7 +11,7 @@ public class EntityStats {
 	
 	//Monster Constants
 	public static int MONSTER_HEALTH = 100;
-	public static int MONSTER_DAMAGE = 20;
+	public static int MONSTER_DAMAGE = 15;
 	public static int MONSTER_DAMAGERANGE = 10;
 	
 }

@@ -15,9 +15,9 @@ public class EntityMonster extends EntityBase {
 	static int baseDamageRange = entities.EntityStats.MONSTER_DAMAGERANGE;
 	static String[] MONSTER_NAMES = {"Zombie","Skeleton","Wraith","Bandit","Demon","Platypus","Slime","Cyclops","Dragon","Ogre","Vampire","WereWolf","Unicorn","Ghost","Giant Spider","Deep-Space Kraken","Wendigo","The Thing","Satanic Cultist","Goblin","Weeaboo","WHATARETHOOOSE?!?","Ninja Pirate","Slenderman","Rabid Butterfly","The Blob","Giant","Orc","999","Bat","Pokeman","Alien","Barbarian","Bee Swarm","Scorpion","Wolf Pack","Rogue Wizard","ERROR 404"};
 
-	public EntityMonster(String name,Difficulty difficulty) {
-		  super(name,difficulty.mult(baseHealth),difficulty.mult(baseDamage), baseDamageRange);
-		//TODO health and damage randomizer
+	public EntityMonster(String name,double mult) {
+		  super(name,multStats(mult,baseHealth) ,multStats(mult,baseDamage) , baseDamageRange);
+		//TODO health and damage randomizer???
 		this.alive = true;
 		this.name = getRandomName();
 		if(GameAlgorithms.shouldSpawnWeapon()){
@@ -46,7 +46,11 @@ public class EntityMonster extends EntityBase {
 		}
 		
 	}
-
+	private static int multStats(double mult,int base){
+		System.out.println("MULT:"+mult+"  BASE:"+base);
+		int stat = (int)Math.round(mult * base);
+		return stat;
+	}
 
 	
 }

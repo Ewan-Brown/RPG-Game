@@ -50,30 +50,31 @@ public class Main{
 	}
 	String playerName;
 	boolean fastMode;
-	EntityBase loser;
-	EntityBase winner;
 	Difficulty difficulty;
 	EntityPlayer player;
 	EntityMonster monster;
 	boolean GameOn = true;
 	Stage currentStage;
 	
-	public int getMult(int a){
+	public double getMult(){
 		double b  = difficulty.getMult() * currentStage.getMult(); 
-		return (int) Math.round(b * a);
+		return b;
 	}
 
 	
 	public static void main(String[] args) {
 		Main game = new Main();
 		game.RunGame();
+		
 
 	}
 	public void RunGame(){
 		while(true){
 			GameOn = true;
 			gameStart();
+			currentStage = new Stage();
 			battleStart();
+			System.out.println(getMult());
 			while(GameOn == true){
 				battleActive();
 				boolean a = battleEnd();
@@ -114,18 +115,19 @@ public class Main{
 
 		GameAlgorithms.sleep(fastMode);
 		player = GameAlgorithms.PlayerSpawn(playerName);
-		monster = GameAlgorithms.RandomMonster(difficulty);
+		monster = GameAlgorithms.RandomMonster(getMult());
 		player.PrintStats();
 		monster.PrintStats();
 		GameAlgorithms.sleep(fastMode);
 		
 	}
 	public void battleActive(){
+		currentStage.printStats();
 		//loop of turn based attacks, X hits Y, Y hits X etc.
 		GameAlgorithms.sleep(fastMode);
 		
 		if(!monster.isAlive()){
-			monster = GameAlgorithms.RandomMonster(difficulty);
+			monster = GameAlgorithms.RandomMonster(getMult());
 			monster.PrintStats();
 			GameAlgorithms.sleep(fastMode);
 		}
@@ -161,6 +163,7 @@ public class Main{
 //		main(null);
 	}
 	public void onPlayerWin(){
+		currentStage.onMonsterKilled();
 		Print.printDefeated(player,monster);
 		player.onKillMonster(monster);
 	}

@@ -27,8 +27,8 @@ public class GameAlgorithms {
 		EntityPlayer player = new EntityPlayer(name);
 		return player;
 	}
-	public static EntityMonster RandomMonster(Difficulty difficulty){
-		EntityMonster monster = new EntityMonster("NULL_MONSTER_NAME",difficulty);
+	public static EntityMonster RandomMonster(double mult){
+		EntityMonster monster = new EntityMonster("NULL_MONSTER_NAME",mult);
 		return monster;
 	}
 	public static void tryAttack(EntityBase attacker, EntityBase victim){
