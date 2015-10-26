@@ -47,7 +47,6 @@ public class EntityMonster extends EntityBase {
 		
 	}
 	private static int multStats(double mult,int base){
-		System.out.println("MULT:"+mult+"  BASE:"+base);
 		int stat = (int)Math.round(mult * base);
 		return stat;
 	}

@@ -91,20 +91,17 @@ public class Main{
 	public Main(){
 	}
 	public void gameStart(){
-		//select difficulty
-		//enter playername
-		//enter battleType
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Fastmode? press 1 for fastmode");
+		if (scan.nextInt() == 1){
+			fastMode = true;
+		}
 		System.out.println("enter difficulty: 1 easy, 2 normal, 3 hard, 4 uber");
 		int a = scan.nextInt();
 		difficulty = Difficulty.getDifficulty(a);
-		GameAlgorithms.sleep(fastMode);
 		System.out.println("enter Player's name");
 		playerName = scan.next();
-		System.out.println("Fastmode? press 1 for fastmode");
-		if (scan.next() == "1"){
-			fastMode = true;
-		}
+
 		
 	}
 	
@@ -140,9 +137,7 @@ public class Main{
 			GameAlgorithms.tryAttack(monster, player);
 			GameAlgorithms.sleep(fastMode);
 			f1 = player.isAlive();
-			GameAlgorithms.sleep(fastMode);
 			f2 = monster.isAlive();
-			GameAlgorithms.sleep(fastMode);
 			
 		}while(f1 && f2);
 	}

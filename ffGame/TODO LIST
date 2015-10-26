@@ -7,10 +7,14 @@ REORGANIZED CODE, NO MORE INFINITE RECURSION AND NOW ONE BIG LOOP TO RUN ENTIRE 
 
 
 
+FIX:
+
+
+
 WIP:
-	MAKE Main.currentStage VARIABLE NOTIFY MAIN CLASS WHEN IT LEVELS UP FOR PLAYER REWARDS?
-		-maybe give player to currentStage.onKilledMonster so that when monster is killed and 
-			currentStage.onStageUp is called it can give player rewards directly?
+
+
+
 TODO:
 	
 	
