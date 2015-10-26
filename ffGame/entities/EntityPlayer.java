@@ -63,7 +63,7 @@ public class EntityPlayer extends EntityBase{
 				health = baseHealth;
 				System.out.println(baseHealth+" BaseHealth");
 			}
-			System.out.println(xp + " CURRENT XP");
+			System.out.println("Experience "+xp+"/"+EntityStats.EXP_PER_LEVEL);
 		}
 		else{
 			System.out.println("player has reached Max level!");

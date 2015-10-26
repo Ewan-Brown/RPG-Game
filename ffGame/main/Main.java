@@ -119,7 +119,9 @@ public class Main{
 		
 	}
 	public void battleActive(){
+		System.out.println(" ");
 		currentStage.printStats();
+		System.out.println(" ");
 		//loop of turn based attacks, X hits Y, Y hits X etc.
 		GameAlgorithms.sleep(fastMode);
 		
@@ -159,7 +161,9 @@ public class Main{
 	}
 	public void onPlayerWin(){
 		currentStage.onMonsterKilled(player);
+		GameAlgorithms.sleep(fastMode);
 		Print.printDefeated(player,monster);
+		GameAlgorithms.sleep(fastMode);
 		player.onKillMonster(monster);
 	}
 

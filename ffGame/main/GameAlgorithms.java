@@ -81,8 +81,8 @@ public class GameAlgorithms {
 		int xp = player.xp;
 		int kills = player.kills;
 		int level = player.level;
-		System.out.println(getRandomDeathString(player,monster)+((weapon == null) ? "!" : ", Wielding his "+weapon.getName())+" On stage "+currentStage.stageNum);
-		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage());
+		System.out.println(getRandomDeathString(player,monster)+((weapon == null) ? "!" : ", Wielding his "+weapon.getName()));
+		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage()+" On stage "+currentStage.stageNum);
 		System.out.println("after brutally slaying "+kills+" Monsters!");
 		
 	}
