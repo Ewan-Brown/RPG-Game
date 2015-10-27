@@ -47,15 +47,10 @@ public class EntityBase implements EntityInterface{
 		// TODO Auto-generated method stub
 		return this.weapon;
 	}
-	
+	@Override
 	public int onAttacking() {
-		if(!(this.didMiss())){
-			int randRange = GameAlgorithms.randomRangedInt(damageRange);
-			return getDamage() + randRange;
-		}
-		else{
-			return -1;
-		}
+		int randRange = GameAlgorithms.randomRangedInt(damageRange);
+		return getDamage() + randRange;
 	}
 	public void PrintStats(){
 		System.out.println(name+" HP:"+health+" DMG:"+damage+((weapon == null) ? "": " WEAPON: "+weapon.getName()+" WDMG:"+weapon.getDamage()) );
@@ -68,15 +63,6 @@ public class EntityBase implements EntityInterface{
 	}
 	public void giveWeapon(Weapon weapon){
 		this.weapon = weapon;
-	}
-	public boolean didMiss(){
-		double a = Math.random();
-		if(a < 0.3){
-			return true;
-		}
-		else{
-			return false;
-		}
 	}
 	
 	

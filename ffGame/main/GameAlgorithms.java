@@ -33,12 +33,12 @@ public class GameAlgorithms {
 	}
 	public static void tryAttack(EntityBase attacker, EntityBase victim){
 		if(attacker.isAlive()){
-			int damage = attacker.onAttacking();
-			if((damage > 0)){
+			if (!didMiss()){
+				int damage = attacker.onAttacking();
 				victim.onAttacked(damage);
 			}
 			else{
-				System.out.println(attacker.name+" Missed!");
+				System.out.println(""+attacker.name+" missed!");
 			}
 		}
 	}
