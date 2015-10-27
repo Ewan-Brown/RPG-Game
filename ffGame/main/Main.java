@@ -57,7 +57,7 @@ public class Main{
 	Stage currentStage;
 	
 	public double getMult(){
-		double b  = difficulty.getMult() * currentStage.getMult(); 
+		double b  = difficulty.getMult() * currentStage.getMult();
 		return b;
 	}
 
