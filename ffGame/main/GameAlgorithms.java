@@ -42,6 +42,15 @@ public class GameAlgorithms {
 			}
 		}
 	}
+	public static boolean didMiss(){
+		double a = Math.random();
+		if (a < 0.2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public static int randomRangedInt(int range){
 		//double between -1 and +1
 		double rand = (Math.random() - 0.5) * 2;
