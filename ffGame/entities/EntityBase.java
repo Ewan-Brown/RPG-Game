@@ -1,6 +1,6 @@
 package entities;
 
-import main.GameAlgorithms;
+import main.GameMethods;
 import weapon.Weapon;
 
 public class EntityBase implements EntityInterface{
@@ -9,8 +9,9 @@ public class EntityBase implements EntityInterface{
 	public int damage;
 	public int damageRange;
 	public String name;
-	public boolean alive;
+	public boolean alive = true;
 	private Weapon weapon;
+	int missChance = 30;
 	
 	public EntityBase(String name,int health,int damage, int damageRange){
 		this.name = name;
@@ -40,6 +41,9 @@ public class EntityBase implements EntityInterface{
 	public int getRawDamage(){
 		return this.damage;
 	}
+	public int getHealth(){
+		return health;
+	}
 	public int getDamage(){
 		return (getWeapon() == null) ? getRawDamage() : getRawDamage() + getWeaponDamage();
 	}
@@ -50,7 +54,7 @@ public class EntityBase implements EntityInterface{
 	
 	public int onAttacking() {
 		if(!(this.didMiss())){
-			int randRange = GameAlgorithms.randomRangedInt(damageRange);
+			int randRange = GameMethods.randomRangedInt(damageRange);
 			return getDamage() + randRange;
 		}
 		else{
@@ -70,8 +74,8 @@ public class EntityBase implements EntityInterface{
 		this.weapon = weapon;
 	}
 	public boolean didMiss(){
-		double a = Math.random();
-		if(a < 0.3){
+		double a = Math.random() * 100;
+		if(a < missChance){
 			return true;
 		}
 		else{

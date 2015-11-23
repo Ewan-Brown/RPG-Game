@@ -1,6 +1,6 @@
 package entities;
 
-import main.GameAlgorithms;
+import main.GameMethods;
 import weapon.Weapon;
 
 public class EntityPlayer extends EntityBase{

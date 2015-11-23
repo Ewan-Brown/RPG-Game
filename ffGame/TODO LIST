@@ -8,7 +8,7 @@ REORGANIZED CODE, NO MORE INFINITE RECURSION AND NOW ONE BIG LOOP TO RUN ENTIRE 
 
 
 FIX:
-	-Attach Player/Monster Constants TO THE ENTITIES themselves so that they can be non-static and easily accessible
+	-BOSSFIGHT 
 
 
 WIP:

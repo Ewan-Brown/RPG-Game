@@ -2,8 +2,8 @@ package entities;
 
 import weapon.Weapon;
 import weapon.Weapon.Modifier;
-import main.GameAlgorithms;
-import main.Main.Difficulty;
+import main.GameMethods;
+import main.Game.Difficulty;
 
 import java.util.Random;
 
@@ -15,15 +15,28 @@ public class EntityMonster extends EntityBase {
 	static int baseDamageRange = entities.EntityStats.MONSTER_DAMAGERANGE;
 	static String[] MONSTER_NAMES = {"Zombie","Skeleton","Wraith","Bandit","Demon","Platypus","Slime","Cyclops","Dragon","Ogre","Vampire","WereWolf","Unicorn","Ghost","Giant Spider","Deep-Space Kraken","Wendigo","The Thing","Satanic Cultist","Goblin","Weeaboo","WHATARETHOOOSE?!?","Ninja Pirate","Slenderman","Rabid Butterfly","The Blob","Giant","Orc","999","Bat","Pokeman","Alien","Barbarian","Bee Swarm","Scorpion","Wolf Pack","Rogue Wizard","ERROR 404"};
 
-	public EntityMonster(String name,double mult) {
+	public EntityMonster(String name,double mult,double wepSpawn) {
 		  super(name,multStats(mult,baseHealth) ,multStats(mult,baseDamage) , baseDamageRange);
 		//TODO health and damage randomizer???
-		this.alive = true;
 		this.name = getRandomName();
-		if(GameAlgorithms.shouldSpawnWeapon()){
+		if(this.shouldSpawnWeapon(wepSpawn)){
 			Weapon weapon = new Weapon();
 			this.giveWeapon(weapon);
 		}
+	}
+	public boolean shouldSpawnWeapon(double wepSpawn) {
+		boolean a;
+		double rand = Math.random()*100;
+		if(rand < wepSpawn){
+			a = true;
+		}
+		else{
+			a = false;
+		}
+		return a;
+	}
+	public EntityMonster(String name, int health,int damage,int damageRange){
+		super(name,health,damage,damageRange);
 	}
 	public void onDeath(){
 		this.alive = false;
@@ -44,7 +57,6 @@ public class EntityMonster extends EntityBase {
 		else if(health <= 20){
 			System.out.println(name+"'s Health is critically low!!!");
 		}
-		
 	}
 	private static int multStats(double mult,int base){
 		int stat = (int)Math.round(mult * base);
