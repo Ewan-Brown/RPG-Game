@@ -7,7 +7,7 @@ public class Stage {
 	int stageNum = 0;
 	int monstersKilled;
 	int monstersRequired = 3;
-	int finalStage = 5;
+	int finalStage = 7;
 //	int monstersReqIncrement; TO BE USED LATER
 	
 	public double getMult(){

@@ -25,8 +25,8 @@ public class StatsDisplay {
 		textWeaponSpawn.setText(game.getWeaponSpawn()+"");
 		//TODO MISS GETTER AND COUNTER
 		textMissChance.setText(game.getMissChance()+"");
-		textMissPlayer.setText(game.getPMisses()+"");
-		textMissMonster.setText(game.getMMisses()+"");
+		textMissPlayer.setText(game.getPMisses()+" %");
+		textMissMonster.setText(game.getMMisses()+" %");
 	}
 
 	/**

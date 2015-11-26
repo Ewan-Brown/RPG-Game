@@ -29,16 +29,32 @@ public class Game{
 		return paused;
 	}
 	public int getPMisses(){
-		return playerMisses;
+		if(playerAttacks == 0){
+			return 0;
+		}
+		else{
+			int a = 100 / playerAttacks;
+			a *= playerMisses; 
+			
+			return a;
+		}
 	}
 	public int getMMisses(){
-		return monsterMisses;
+		if(monsterAttacks == 0){
+			return 0;
+		}
+		else{
+			int a = 100 / monsterAttacks;
+			a *= monsterMisses; 
+			
+			return a;
+		}
 	}
 	
 	public enum Difficulty{
-		Easy("Easy",0.5),
-		Normal("Normal", 1),
-		Hard("Hard", 1.5),
+		Easy("Easy",0.3),
+		Normal("Normal", 0.5),
+		Hard("Hard", 1.3),
 		Uber("Uber", 2);
 		
 
@@ -97,6 +113,8 @@ public class Game{
 	boolean paused = false;
 	int monsterMisses;
 	int playerMisses;
+	int monsterAttacks;
+	int playerAttacks;
 	
 	
 	public double getMissChance(){
@@ -110,11 +128,14 @@ public class Game{
 		return b;
 	}
 	public void sleep(){
-		try {
-			Thread.sleep(400);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(fastMode == false){
+			
+			try {
+				Thread.sleep(400);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	public static void main(String[] args) {
@@ -300,6 +321,12 @@ public class Game{
 	
 	public void tryAttack(EntityBase attacker, EntityBase victim){
 		if(attacker.isAlive()){
+			if(attacker instanceof EntityPlayer){
+				playerAttacks += 1;
+			}
+			if(attacker instanceof EntityMonster){
+				monsterAttacks += 1;
+			}
 			int damage = attacker.onAttacking();
 			if((damage > 0)){
 				victim.onAttacked(damage);
