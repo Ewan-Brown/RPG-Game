@@ -4,10 +4,16 @@ import main.GameMethods;
 import weapon.Weapon;
 
 public class EntityPlayer extends EntityBase{
+	
+	public static int PLAYER_HEALTH = 100;
+	public static int PLAYER_DAMAGE = 20;
+	public static int PLAYER_DAMAGERANGE = 10;
+	public static int EXPERIENCE_DROPS = 25;
+	public static int EXP_PER_LEVEL = 100;
 
-	public static int baseHealth = entities.EntityStats.PLAYER_HEALTH ;
-	static int damage = entities.EntityStats.PLAYER_DAMAGE;
-	static int damageRange = entities.EntityStats.PLAYER_DAMAGERANGE;;
+	public static int baseHealth = PLAYER_HEALTH ;
+	static int damage = PLAYER_DAMAGE;
+	static int damageRange = PLAYER_DAMAGERANGE;;
 	public int kills = 0;
 	public int xp = 0;
 	public int level = 0;
@@ -54,7 +60,7 @@ public class EntityPlayer extends EntityBase{
 		if(level < 5){
 			xp = xp + bonusExp();
 			//xp =+ EntityStats.EXPERIENCE_DROPS;
-			if (xp >= EntityStats.EXP_PER_LEVEL){
+			if (xp >= EXP_PER_LEVEL){
 				level = level + 1;
 				xp = xp - 100;
 				System.out.println("----LEVEL UP!!!----");
@@ -63,7 +69,7 @@ public class EntityPlayer extends EntityBase{
 				health = baseHealth;
 				System.out.println(baseHealth+" BaseHealth");
 			}
-			System.out.println("Experience "+xp+"/"+EntityStats.EXP_PER_LEVEL);
+			System.out.println("Experience "+xp+"/"+EXP_PER_LEVEL);
 		}
 		else{
 			System.out.println("player has reached Max level!");

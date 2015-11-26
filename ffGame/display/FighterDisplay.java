@@ -10,6 +10,8 @@ import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.sun.javafx.tk.Toolkit.Task;
+
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.Game;
@@ -20,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JProgressBar;
 
 public class FighterDisplay implements ActionListener{
 
@@ -37,10 +40,13 @@ public class FighterDisplay implements ActionListener{
 	public JTextPane txtMonsterDamage;
 	public JLabel lblMonsterWeapon;
 	public JTextPane txtMonsterWeaponName;
-	public JButton btnPauseGame;
+	public JButton btnPause;
+	public JProgressBar barPlayerHealth;
 	public JTextPane txtMonsterWeaponDamage;
+	public JProgressBar barMonsterHealth;
 	
 	public Game game = null;
+	private JProgressBar barExperience;
 
 	/**
 	 * Launch the application.
@@ -50,6 +56,15 @@ public class FighterDisplay implements ActionListener{
 		this.game = currentGame;
 		EntityMonster monster = game.monster;
 		EntityPlayer player = game.player;
+		barPlayerHealth.setMinimum(0);
+		barPlayerHealth.setMaximum(player.baseHealth);
+		barPlayerHealth.setValue(player.health);
+		barMonsterHealth.setMinimum(0);
+		barMonsterHealth.setMaximum(monster.baseHealth);
+		barMonsterHealth.setValue(monster.health);
+		barExperience.setMinimum(0);
+		barExperience.setMaximum(player.EXP_PER_LEVEL);
+		barExperience.setValue(player.xp);
 		
 		txtName.setText(player.name);
 		txtHealth.setText(player.getHealth()+"");
@@ -113,35 +128,35 @@ public class FighterDisplay implements ActionListener{
 		txtHealth = new JTextPane();
 		txtHealth.setEditable(false);
 		txtHealth.setText("Health");
-		txtHealth.setBounds(12, 75, 116, 22);
+		txtHealth.setBounds(12, 89, 116, 22);
 		frame.getContentPane().add(txtHealth);
 		
 		txtName = new JTextPane();
 		txtName.setEditable(false);
 		txtName.setText("Name");
-		txtName.setBounds(12, 40, 116, 22);
+		txtName.setBounds(12, 54, 116, 22);
 		frame.getContentPane().add(txtName);
 		
 		txtDamage = new JTextPane();
 		txtDamage.setEditable(false);
 		txtDamage.setText("Damage");
-		txtDamage.setBounds(12, 110, 116, 22);
+		txtDamage.setBounds(12, 124, 116, 22);
 		frame.getContentPane().add(txtDamage);
 		
 		lblWeapon = new JLabel("Weapon");
-		lblWeapon.setBounds(38, 140, 56, 16);
+		lblWeapon.setBounds(38, 154, 56, 16);
 		frame.getContentPane().add(lblWeapon);
 		
 		txtWeaponName = new JTextPane();
 		txtWeaponName.setEditable(false);
 		txtWeaponName.setText("Name");
-		txtWeaponName.setBounds(12, 155, 116, 22);
+		txtWeaponName.setBounds(12, 169, 116, 22);
 		frame.getContentPane().add(txtWeaponName);
 		
 		txtWeaponDamage = new JTextPane();
 		txtWeaponDamage.setEditable(false);
 		txtWeaponDamage.setText("Damage");
-		txtWeaponDamage.setBounds(12, 190, 116, 22);
+		txtWeaponDamage.setBounds(12, 204, 116, 22);
 		frame.getContentPane().add(txtWeaponDamage);
 		
 		lblMonster = new JLabel("MONSTER");
@@ -152,41 +167,59 @@ public class FighterDisplay implements ActionListener{
 		txtMonsterName = new JTextPane();
 		txtMonsterName.setText("MonsterName");
 		txtMonsterName.setEditable(false);
-		txtMonsterName.setBounds(280, 40, 116, 22);
+		txtMonsterName.setBounds(280, 54, 116, 22);
 		frame.getContentPane().add(txtMonsterName);
 		
 		txtMonsterHealth = new JTextPane();
 		txtMonsterHealth.setText("Health");
 		txtMonsterHealth.setEditable(false);
-		txtMonsterHealth.setBounds(280, 75, 116, 22);
+		txtMonsterHealth.setBounds(280, 89, 116, 22);
 		frame.getContentPane().add(txtMonsterHealth);
 		
 		txtMonsterDamage = new JTextPane();
 		txtMonsterDamage.setText("Damage");
 		txtMonsterDamage.setEditable(false);
-		txtMonsterDamage.setBounds(280, 110, 116, 22);
+		txtMonsterDamage.setBounds(280, 124, 116, 22);
 		frame.getContentPane().add(txtMonsterDamage);
 		
 		lblMonsterWeapon = new JLabel("Weapon");
-		lblMonsterWeapon.setBounds(306, 140, 56, 16);
+		lblMonsterWeapon.setBounds(306, 154, 56, 16);
 		frame.getContentPane().add(lblMonsterWeapon);
 		
 		txtMonsterWeaponName = new JTextPane();
 		txtMonsterWeaponName.setText("Name");
 		txtMonsterWeaponName.setEditable(false);
-		txtMonsterWeaponName.setBounds(280, 155, 116, 22);
+		txtMonsterWeaponName.setBounds(280, 169, 116, 22);
 		frame.getContentPane().add(txtMonsterWeaponName);
 		
 		txtMonsterWeaponDamage = new JTextPane();
 		txtMonsterWeaponDamage.setText("Damage");
 		txtMonsterWeaponDamage.setEditable(false);
-		txtMonsterWeaponDamage.setBounds(280, 190, 116, 22);
+		txtMonsterWeaponDamage.setBounds(280, 204, 116, 22);
 		frame.getContentPane().add(txtMonsterWeaponDamage);
 		
-		JButton btnPause = new JButton("Pause");
+		btnPause = new JButton("Pause");
 		btnPause.setBounds(150, 37, 97, 189);
 		frame.getContentPane().add(btnPause);
 		btnPause.addActionListener(this);
+		
+		barPlayerHealth = new JProgressBar();
+		barPlayerHealth.setBounds(12, 39, 116, 14);
+		frame.getContentPane().add(barPlayerHealth);
+		barPlayerHealth.setValue(0);
+		barPlayerHealth.setStringPainted(true);
+		
+		barMonsterHealth = new JProgressBar();
+		barMonsterHealth.setBounds(280, 39, 116, 14);
+		frame.getContentPane().add(barMonsterHealth);
+		barMonsterHealth.setValue(0);
+		barMonsterHealth.setStringPainted(true);
+		
+		barExperience = new JProgressBar();
+		barExperience.setValue(0);
+		barExperience.setStringPainted(true);
+		barExperience.setBounds(12, 226, 116, 14);
+		frame.getContentPane().add(barExperience);
 
 
 	}
