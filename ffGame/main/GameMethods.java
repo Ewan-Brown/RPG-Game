@@ -1,11 +1,9 @@
 package main;
 
-import main.Game.Difficulty;
 import weapon.Weapon;
 
 import java.util.Random;
 
-import entities.EntityBase;
 import entities.EntityMonster;
 import entities.EntityPlayer;
 

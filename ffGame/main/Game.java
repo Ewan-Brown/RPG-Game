@@ -10,7 +10,6 @@ import entities.EntityBoss;
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.GameMethods;
-import weapon.Weapon;
 
 
 public class Game{
@@ -104,7 +103,7 @@ public class Game{
 	public EntityPlayer player;
 	public EntityMonster monster;
 	boolean GameOn = true;
-	Stage currentStage;
+	public Stage currentStage;
 	FighterDisplay fighterDisplay;
 	StatsDisplay statsDisplay;
 	static Game game;
@@ -133,7 +132,6 @@ public class Game{
 			try {
 				Thread.sleep(400);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -259,7 +257,6 @@ public class Game{
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

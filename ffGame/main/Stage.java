@@ -5,8 +5,8 @@ import entities.EntityPlayer;
 public class Stage {
 	
 	int stageNum = 0;
-	int monstersKilled;
-	int monstersRequired = 3;
+	public int monstersKilled;
+	public int monstersRequired = 3;
 	int finalStage = 7;
 //	int monstersReqIncrement; TO BE USED LATER
 	

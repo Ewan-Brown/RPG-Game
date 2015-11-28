@@ -44,6 +44,7 @@ public class FighterDisplay implements ActionListener{
 	public JProgressBar barPlayerHealth;
 	public JTextPane txtMonsterWeaponDamage;
 	public JProgressBar barMonsterHealth;
+	public JProgressBar barKills;
 	
 	public Game game = null;
 	private JProgressBar barExperience;
@@ -65,7 +66,9 @@ public class FighterDisplay implements ActionListener{
 		barExperience.setMinimum(0);
 		barExperience.setMaximum(player.EXP_PER_LEVEL);
 		barExperience.setValue(player.xp);
-		
+		barKills.setMinimum(0);
+		barKills.setMaximum(currentGame.currentStage.monstersRequired);
+		barKills.setValue(currentGame.currentStage.monstersKilled);
 		txtName.setText(player.name);
 		txtHealth.setText(player.getHealth()+"");
 		txtDamage.setText(player.getDamage()+"");
@@ -220,6 +223,12 @@ public class FighterDisplay implements ActionListener{
 		barExperience.setStringPainted(true);
 		barExperience.setBounds(12, 226, 116, 14);
 		frame.getContentPane().add(barExperience);
+		
+		barKills = new JProgressBar();
+		barKills.setValue(0);
+		barKills.setStringPainted(true);
+		barKills.setBounds(62, 239, 282, 14);
+		frame.getContentPane().add(barKills);
 
 
 	}
