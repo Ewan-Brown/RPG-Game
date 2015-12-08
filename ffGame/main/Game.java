@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.Scanner;
 
 import display.FighterDisplay;
+import display.StartDisplay;
 import display.StatsDisplay;
 import entities.EntityBase;
 import entities.EntityBoss;
@@ -114,6 +115,8 @@ public class Game{
 	int playerMisses;
 	int monsterAttacks;
 	int playerAttacks;
+	StartDisplay startDisplay;
+	StartValues values = new StartValues();
 	
 	
 	public double getMissChance(){
@@ -161,6 +164,16 @@ public class Game{
 				}
 			}
 		});
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					startDisplay = new StartDisplay();
+					startDisplay.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	public void runGame(){
 		
@@ -196,18 +209,24 @@ public class Game{
 	public Game(){}
 	public void gameStart(){
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Fastmode? press 1 for fastmode");
-		if (scan.nextInt() == 1){
-			fastMode = true;
-		}
-		sleep();
-		System.out.println("enter difficulty: 1 easy, 2 normal, 3 hard, 4 uber");
-		int a = scan.nextInt();
-		difficulty = Difficulty.getDifficulty(a);
-		sleep();
-		System.out.println("enter Player's name");
-		playerName = scan.next();
-		sleep();
+
+		values = startDisplay.getValues(values);
+		this.difficulty = values.difficulty;
+		this.playerName = values.playerName;
+		this.fastMode = values.fastMode;
+		
+//		System.out.println("Fastmode? press 1 for fastmode");
+//		if (scan.nextInt() == 1){
+//			fastMode = true;
+//		}
+//		sleep();
+//		System.out.println("enter difficulty: 1 easy, 2 normal, 3 hard, 4 uber");
+//		int a = scan.nextInt();
+//		difficulty = Difficulty.getDifficulty(a);
+//		sleep();
+//		System.out.println("enter Player's name");
+//		playerName = scan.next();
+//		sleep();
 	}
 	
 	public void battleStart(){
