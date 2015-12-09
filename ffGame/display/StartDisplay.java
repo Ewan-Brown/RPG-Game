@@ -80,7 +80,7 @@ public class StartDisplay implements ActionListener{
 		values.playerName = this.txtPlayername.getText();
 		values.fastMode =tglBtnFastmode.isSelected();
 		System.out.println(values.difficulty+" "+values.playerName+" "+values.fastMode);
-		
+		pressed = false;
 		return values;
 
 		

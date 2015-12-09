@@ -1,8 +1,6 @@
 package main; 
 
 import java.awt.EventQueue;
-import java.util.Scanner;
-
 import display.FighterDisplay;
 import display.StartDisplay;
 import display.StatsDisplay;
@@ -214,7 +212,6 @@ public class Game{
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		values = startDisplay.getValues();
