@@ -43,9 +43,15 @@ public class StartDisplay implements ActionListener{
 			}
 		});
 	}
-	public StartValues getValues(StartValues values){
-		txtPlayername.setText("noname");
+	public StartValues getValues(){
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		StartValues values = new StartValues();
 		do{
 			try {
 				Thread.sleep(500);

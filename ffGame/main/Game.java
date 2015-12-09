@@ -208,9 +208,17 @@ public class Game{
 	}
 	public Game(){}
 	public void gameStart(){
-		Scanner scan = new Scanner(System.in);
-
-		values = startDisplay.getValues(values);
+		/* I dont know why but without this sleep, a 
+		 * NullPointerException occurs on values = startDisplay.getValues();
+		*/
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		values = startDisplay.getValues();
+		System.out.println("INFO TAKEN!");
 		this.difficulty = values.difficulty;
 		this.playerName = values.playerName;
 		this.fastMode = values.fastMode;
@@ -274,7 +282,7 @@ public class Game{
 			}
 			else{
 				try {
-					Thread.sleep(500);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
