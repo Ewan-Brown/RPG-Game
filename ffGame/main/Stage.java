@@ -19,7 +19,7 @@ public class Stage {
 	public Stage(){
 		stageNum = 1;
 	}
-	public void onMonsterKilled(EntityPlayer player){
+	public void onMonsterKilled(EntityPlayer player ){
 		monstersKilled += 1;
 		if(monstersKilled == monstersRequired){
 			this.onStageUp(player);
@@ -30,9 +30,10 @@ public class Stage {
 		monstersKilled = 0;
 		stageNum += 1;
 		System.out.println("Stage Up! : "+stageNum);
+		
 		player.onStageUp();
 	}
-	public void printStats(){
+	public void printStats( ){
 		System.out.println("Monsters Killed "+monstersKilled+"/"+monstersRequired);
 		System.out.println("Stage: "+stageNum);
 	}

@@ -7,26 +7,21 @@ import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import main.Game;
+import javax.swing.JTextField;
 
 public class StatsDisplay {
 
 	public JFrame frame;
-	JLabel lblWeaponSpawn;
-	JLabel lblMissChance;
-	JLabel lblTotalMiss;
-	JLabel lblPlayer;
-	JLabel lblMonsters;
-	JTextPane textWeaponSpawn;
-	JTextPane textMissChance;
-	JTextPane textMissPlayer;
-	JTextPane textMissMonster;
+	private JTextField textKills;
+	private JLabel lblDamageDealt;
+	private JLabel lblDamageTaken;
+	private JTextField textDamageDealt;
+	private JTextField textDamageTaken;
 	
 	public void updateDisplay(Game game){
-		textWeaponSpawn.setText(game.getWeaponSpawn()+"");
-		//TODO MISS GETTER AND COUNTER
-		textMissChance.setText(game.getMissChance()+"");
-		textMissPlayer.setText(game.getPMisses()+" %");
-		textMissMonster.setText(game.getMMisses()+" %");
+		textKills.setText(game.player.kills+"");
+		textDamageDealt.setText(game.player.damageDealt+"");
+		textDamageTaken.setText(game.player.damageTaken+"");
 	}
 
 	/**
@@ -61,40 +56,31 @@ public class StatsDisplay {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		lblWeaponSpawn = new JLabel("Weapon Spawn %");
-		lblWeaponSpawn.setBounds(12, 13, 106, 16);
-		frame.getContentPane().add(lblWeaponSpawn);
+		JLabel lblPlayerKills = new JLabel("Player Kills");
+		lblPlayerKills.setBounds(12, 13, 80, 16);
+		frame.getContentPane().add(lblPlayerKills);
 		
-		lblMissChance = new JLabel("Miss Chance");
-		lblMissChance.setBounds(12, 65, 106, 16);
-		frame.getContentPane().add(lblMissChance);
+		textKills = new JTextField();
+		textKills.setBounds(12, 30, 80, 22);
+		frame.getContentPane().add(textKills);
+		textKills.setColumns(10);
 		
-		lblTotalMiss = new JLabel("Actual Miss #");
-		lblTotalMiss.setBounds(12, 117, 106, 16);
-		frame.getContentPane().add(lblTotalMiss);
+		lblDamageDealt = new JLabel("Damage Dealt");
+		lblDamageDealt.setBounds(12, 65, 80, 16);
+		frame.getContentPane().add(lblDamageDealt);
 		
-		lblPlayer = new JLabel("Player");
-		lblPlayer.setBounds(12, 141, 106, 16);
-		frame.getContentPane().add(lblPlayer);
+		lblDamageTaken = new JLabel("Damage Taken");
+		lblDamageTaken.setBounds(12, 116, 96, 16);
+		frame.getContentPane().add(lblDamageTaken);
 		
-		lblMonsters = new JLabel("Monsters");
-		lblMonsters.setBounds(12, 199, 106, 16);
-		frame.getContentPane().add(lblMonsters);
+		textDamageDealt = new JTextField();
+		textDamageDealt.setColumns(10);
+		textDamageDealt.setBounds(12, 81, 80, 22);
+		frame.getContentPane().add(textDamageDealt);
 		
-		textWeaponSpawn = new JTextPane();
-		textWeaponSpawn.setBounds(12, 30, 106, 22);
-		frame.getContentPane().add(textWeaponSpawn);
-		
-		textMissChance = new JTextPane();
-		textMissChance.setBounds(12, 82, 106, 22);
-		frame.getContentPane().add(textMissChance);
-		
-		textMissPlayer = new JTextPane();
-		textMissPlayer.setBounds(12, 160, 106, 22);
-		frame.getContentPane().add(textMissPlayer);
-		
-		textMissMonster = new JTextPane();
-		textMissMonster.setBounds(11, 218, 106, 22);
-		frame.getContentPane().add(textMissMonster);
+		textDamageTaken = new JTextField();
+		textDamageTaken.setColumns(10);
+		textDamageTaken.setBounds(12, 134, 80, 22);
+		frame.getContentPane().add(textDamageTaken);
 	}
 }

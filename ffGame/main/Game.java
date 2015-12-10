@@ -2,6 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 import display.FighterDisplay;
+import display.LogsDisplay;
 import display.StartDisplay;
 import display.StatsDisplay;
 import entities.EntityBase;
@@ -114,6 +115,7 @@ public class Game{
 	int monsterAttacks;
 	int playerAttacks;
 	StartDisplay startDisplay;
+	LogsDisplay logs;
 	StartValues values = new StartValues();
 	
 	
@@ -172,6 +174,16 @@ public class Game{
 				}
 			}
 		});
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					logs = new LogsDisplay();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	public void runGame(){
 		
@@ -184,7 +196,7 @@ public class Game{
 			battleStart();
 			fighterDisplay.updateDisplay(this);
 			statsDisplay.updateDisplay(this);
-			System.out.println(getMult());
+			System.out.println(getMult()+"");
 			while(GameOn == true){
 				if(currentStage.stageNum == currentStage.finalStage){
 					BossBattle();
@@ -306,7 +318,7 @@ public class Game{
 		GameMethods.playerLossStats(player, monster,currentStage);
 	}
 	public void onPlayerWin(){
-		Print.printDefeated(player,monster);
+		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
 		sleep();
 		System.out.println(" ");
 		currentStage.onMonsterKilled(player);
@@ -333,9 +345,9 @@ public class Game{
 	}
 	public void onPlayerWinBoss(){
 		sleep();
-		Print.printDefeated(player,monster);
+		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
 		sleep();
-		System.out.println(player.name+" Has Defeated the Boss!");
+		System.out.println(player.name+" Has Deeated the Boss!");
 		sleep();
 		player.PrintStats();
 	}

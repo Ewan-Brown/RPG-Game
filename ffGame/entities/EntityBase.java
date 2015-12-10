@@ -1,9 +1,10 @@
 package entities;
 
+
 import main.GameMethods;
 import weapon.Weapon;
 
-public class EntityBase implements EntityInterface{
+public class EntityBase{
 
 	public int health;
 	public int damage;
@@ -23,7 +24,7 @@ public class EntityBase implements EntityInterface{
 		this.alive = false;
 		System.out.println(name+" died!");
 	}
-	@Override
+	
 	public void onAttacked(int dmg) {
 		this.health -= dmg;
 		System.out.println(this.name+" was hit for "+dmg+" damage!");

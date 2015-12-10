@@ -1,5 +1,6 @@
 package entities;
 
+
 import main.GameMethods;
 import weapon.Weapon;
 
@@ -17,6 +18,8 @@ public class EntityPlayer extends EntityBase{
 	public int kills = 0;
 	public int xp = 0;
 	public int level = 0;
+	public int damageDealt = 0;
+	public int damageTaken = 0;
 	
 	public EntityPlayer(String name){
 		super(name,baseHealth,damage,damageRange);
@@ -38,6 +41,29 @@ public class EntityPlayer extends EntityBase{
 		kills = kills + 1;
 		giveExp();
 		tryGiveWeapon(monster.getWeapon());
+	}
+	
+	public void onAttacked(int damage) {
+		this.damageTaken += damage;
+		this.health -= damage;
+		System.out.println(this.name+" was hit for "+damage+" damage!");
+		if(health <= 0){
+			onDeath();
+		}
+		else if(health <= 20){
+			System.out.println(name+"'s Health is critically low!!!");
+		}
+	}
+	public int onAttacking() {
+		if(!(this.didMiss())){
+			int randRange = GameMethods.randomRangedInt(damageRange);
+			int damage =getDamage() + randRange;
+			this.damageDealt += damage;
+			return damage;
+		}
+		else{
+			return -1;
+		}
 	}
 	public void tryGiveWeapon(Weapon monsterWeapon){
 		Weapon playerWeapon = getWeapon();

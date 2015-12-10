@@ -7,6 +7,7 @@ import main.Game.Difficulty;
 
 import java.util.Random;
 
+
 import entities.EntityBase;
 public class EntityMonster extends EntityBase {
 	
