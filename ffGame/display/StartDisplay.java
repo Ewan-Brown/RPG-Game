@@ -18,6 +18,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class StartDisplay implements ActionListener{
 
@@ -27,6 +31,7 @@ public class StartDisplay implements ActionListener{
 	boolean pressed = false;
 	JButton btnEnterInfo;
 	JToggleButton tglBtnFastmode;
+	JSpinner spinner;
 
 	/**
 	 * Launch the application.
@@ -78,8 +83,8 @@ public class StartDisplay implements ActionListener{
 			values.difficulty = Difficulty.Uber;
 		}
 		values.playerName = this.txtPlayername.getText();
-		values.fastMode =tglBtnFastmode.isSelected();
-		System.out.println(values.difficulty+" "+values.playerName+" "+values.fastMode);
+		values.fastMode = tglBtnFastmode.isSelected();
+		values.sleepMillis = (int)spinner.getValue();
 		pressed = false;
 		return values;
 
@@ -99,7 +104,7 @@ public class StartDisplay implements ActionListener{
 	@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 320, 196);
+		frame.setBounds(100, 100, 412, 232);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		list = new JList();
@@ -121,33 +126,52 @@ public class StartDisplay implements ActionListener{
 		btnEnterInfo.addActionListener(this);
 		
 		tglBtnFastmode = new JToggleButton("Fastmode");
+		
+		JLabel lblSleepMillis = new JLabel("Sleep millis");
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(new Integer(500), null, null, new Integer(1)));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(list, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtPlayername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(12)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPlayername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(list, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(38)
+							.addComponent(lblSleepMillis))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(tglBtnFastmode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnEnterInfo, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-					.addGap(19))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(tglBtnFastmode, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+						.addComponent(btnEnterInfo, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(12)
-					.addComponent(txtPlayername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(9)
-					.addComponent(list, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(tglBtnFastmode, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEnterInfo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(12)
+							.addComponent(txtPlayername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(9)
+							.addComponent(list)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblSleepMillis)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(tglBtnFastmode, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnEnterInfo, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
+					.addGap(70))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

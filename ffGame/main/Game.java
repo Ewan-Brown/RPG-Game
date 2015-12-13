@@ -117,6 +117,7 @@ public class Game{
 	StartDisplay startDisplay;
 	LogsDisplay logs;
 	StartValues values = new StartValues();
+	int sleepMillis = 500;
 	
 	
 	public double getMissChance(){
@@ -133,7 +134,7 @@ public class Game{
 		if(fastMode == false){
 			
 			try {
-				Thread.sleep(400);
+				Thread.sleep(sleepMillis);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -178,7 +179,6 @@ public class Game{
 			public void run() {
 				try {
 					logs = new LogsDisplay();
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -231,6 +231,7 @@ public class Game{
 		this.difficulty = values.difficulty;
 		this.playerName = values.playerName;
 		this.fastMode = values.fastMode;
+		this.sleepMillis = values.sleepMillis;
 		
 //		System.out.println("Fastmode? press 1 for fastmode");
 //		if (scan.nextInt() == 1){
@@ -249,6 +250,7 @@ public class Game{
 	public void battleStart(){
 		//initialize monsters/player
 		//begin fight!
+		player = null;
 		player = GameMethods.PlayerSpawn(playerName);
 		monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
 		player.PrintStats();
