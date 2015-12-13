@@ -1,9 +1,3 @@
 /bin/
 
-/wpb-meta
-/RemoteSystesTempFiles
-.classpath
-.gitattributes
-.project
-forms-1.3.0
-/miglayout15-swing
+/wpb-meta.o
