@@ -9,7 +9,7 @@ import javax.swing.JTextPane;
 import main.Game;
 import javax.swing.JTextField;
 
-public class StatsDisplay {
+public class DisplayStats {
 
 	public JFrame frame;
 	private JTextField textKills;
@@ -23,7 +23,6 @@ public class StatsDisplay {
 		textDamageDealt.setText(game.player.damageDealt+"");
 		textDamageTaken.setText(game.player.damageTaken+"");
 	}
-
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +30,7 @@ public class StatsDisplay {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StatsDisplay window = new StatsDisplay();
+					DisplayStats window = new DisplayStats();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +42,7 @@ public class StatsDisplay {
 	/**
 	 * Create the application.
 	 */
-	public StatsDisplay() {
+	public DisplayStats() {
 		initialize();
 	}
 

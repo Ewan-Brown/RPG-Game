@@ -24,7 +24,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
-public class FighterDisplay implements ActionListener{
+public class DisplayFighter implements ActionListener{
 
 	public JFrame frame;
 	public JLabel lblPlayer;
@@ -98,7 +98,7 @@ public class FighterDisplay implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FighterDisplay window = new FighterDisplay();
+					DisplayFighter window = new DisplayFighter();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -110,7 +110,7 @@ public class FighterDisplay implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public FighterDisplay() {
+	public DisplayFighter() {
 		initialize();
 	}
 

@@ -7,8 +7,9 @@ public class Weapon {
 	int damage;
 	String name;
 	String type;
+	int value;
 	Modifier modifier = null;
-	public static String[] WEAPON_TYPE = {"Sword","Spear","Dagger","War Hammer","Battle Axe","Stick","Crossbow","Bow","Slingshot","BAZOOKA!","Damascus Steel Karambit","Javelin","Great Sword","Long Bow","Big Sharp Thing"}; 
+	public static String[] WEAPON_NAME = {"Sword","Spear","Dagger","War Hammer","Battle Axe","Stick","Crossbow","Bow","Slingshot","BAZOOKA!","Damascus Steel Karambit","Javelin","Great Sword","Long Bow","Big Sharp Thing"}; 
 	public Weapon(){
 		this.type = getRandomType();
 		this.modifier = getRandomModifier();
@@ -19,8 +20,8 @@ public class Weapon {
 	
 	
 	public static String getRandomType(){
-		int pick = new Random().nextInt(WEAPON_TYPE.length);
-		return WEAPON_TYPE[pick];
+		int pick = new Random().nextInt(WEAPON_NAME.length);
+		return WEAPON_NAME[pick];
 	}
 	public int getDamage(){
 		return this.damage;

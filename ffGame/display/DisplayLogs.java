@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.DefaultCaret;
 
-public class LogsDisplay extends WindowAdapter implements WindowListener,  ActionListener, Runnable{
+public class DisplayLogs extends WindowAdapter implements WindowListener,  ActionListener, Runnable{
 
 //	public void printLine(String output){
 //		output = textOutput.getText()+"\n"+output;
@@ -32,7 +32,7 @@ public class LogsDisplay extends WindowAdapter implements WindowListener,  Actio
 	 
 	 	Thread errorThrower; // just for testing (Throws an Exception at this Console
 	 
-	 	public LogsDisplay()
+	 	public DisplayLogs()
 	 	{
 	 		// create all components and add them
 	 		frame=new JFrame("Java Console");
@@ -188,6 +188,6 @@ public class LogsDisplay extends WindowAdapter implements WindowListener,  Actio
 	
 		public static void main(String[] arg)
 		{
-			new LogsDisplay(); // create console with not reference
+			new DisplayLogs(); // create console with not reference
 		}
 }

@@ -23,7 +23,7 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class StartDisplay implements ActionListener{
+public class DisplayStart implements ActionListener{
 
 	public JFrame frame;
 	JList list;
@@ -40,7 +40,7 @@ public class StartDisplay implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartDisplay window = new StartDisplay();
+					DisplayStart window = new DisplayStart();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -94,7 +94,7 @@ public class StartDisplay implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public StartDisplay() {
+	public DisplayStart() {
 		initialize();
 	}
 

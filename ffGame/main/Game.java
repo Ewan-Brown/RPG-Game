@@ -1,10 +1,10 @@
 package main; 
 
 import java.awt.EventQueue;
-import display.FighterDisplay;
-import display.LogsDisplay;
-import display.StartDisplay;
-import display.StatsDisplay;
+import display.DisplayFighter;
+import display.DisplayLogs;
+import display.DisplayStart;
+import display.DisplayStats;
 import entities.EntityBase;
 import entities.EntityBoss;
 import entities.EntityMonster;
@@ -104,8 +104,8 @@ public class Game{
 	public EntityMonster monster;
 	boolean GameOn = true;
 	public Stage currentStage;
-	FighterDisplay fighterDisplay;
-	StatsDisplay statsDisplay;
+	DisplayFighter displayFighter;
+	DisplayStats displayStats;
 	static Game game;
 	double weaponSpawn = 30.0;
 	double missChance = 20.0;
@@ -114,8 +114,8 @@ public class Game{
 	int playerMisses;
 	int monsterAttacks;
 	int playerAttacks;
-	StartDisplay startDisplay;
-	LogsDisplay logs;
+	DisplayStart displayStart;
+	DisplayLogs logs;
 	StartValues values = new StartValues();
 	int sleepMillis = 500;
 	
@@ -148,8 +148,8 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					fighterDisplay = new FighterDisplay();
-					fighterDisplay.frame.setVisible(true);
+					displayFighter = new DisplayFighter();
+					displayFighter.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -158,8 +158,8 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					statsDisplay = new StatsDisplay();
-					statsDisplay.frame.setVisible(true);
+					displayStats = new DisplayStats();
+					displayStats.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -168,8 +168,8 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					startDisplay = new StartDisplay();
-					startDisplay.frame.setVisible(true);
+					displayStart = new DisplayStart();
+					displayStart.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -178,7 +178,7 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					logs = new LogsDisplay();
+					logs = new DisplayLogs();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -194,8 +194,8 @@ public class Game{
 			gameStart();
 			currentStage = new Stage();
 			battleStart();
-			fighterDisplay.updateDisplay(this);
-			statsDisplay.updateDisplay(this);
+			displayFighter.updateDisplay(this);
+			displayStats.updateDisplay(this);
 			System.out.println(getMult()+"");
 			while(GameOn == true){
 				if(currentStage.stageNum == currentStage.finalStage){
@@ -226,7 +226,7 @@ public class Game{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		values = startDisplay.getValues();
+		values = displayStart.getValues();
 		System.out.println("INFO TAKEN!");
 		this.difficulty = values.difficulty;
 		this.playerName = values.playerName;
@@ -271,7 +271,7 @@ public class Game{
 				monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
 				monster.PrintStats();
 				sleep();
-				fighterDisplay.updateDisplay(this);
+				displayFighter.updateDisplay(this);
 			}
 		}
 		System.out.println("------FIGHT!------");
@@ -282,12 +282,12 @@ public class Game{
 			if(paused == false){
 				sleep();
 				tryAttack(player, monster);
-				fighterDisplay.updateDisplay(this);
-				statsDisplay.updateDisplay(this);
+				displayFighter.updateDisplay(this);
+				displayStats.updateDisplay(this);
 				sleep();
 				tryAttack(monster, player);
-				fighterDisplay.updateDisplay(this);
-				statsDisplay.updateDisplay(this);
+				displayFighter.updateDisplay(this);
+				displayStats.updateDisplay(this);
 				f1 = player.isAlive();
 				f2 = monster.isAlive();
 			}
@@ -327,7 +327,7 @@ public class Game{
 		System.out.println(" ");
 		sleep();
 		player.onKillMonster(monster);
-		fighterDisplay.updateDisplay(this);
+		displayFighter.updateDisplay(this);
 	}
 	public void BossBattle(){
 		sleep();
