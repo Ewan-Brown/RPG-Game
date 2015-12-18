@@ -39,11 +39,11 @@ public class GameMethods {
 	}
 	public static void playerLossStats(EntityPlayer player,EntityMonster monster,Stage currentStage){
 		Weapon weapon = player.getWeapon();
-		int xp = player.xp;
-		int kills = player.kills;
-		int level = player.level;
+		int xp = player.getExp();
+		int kills = player.getKills();
+		int level = player.getLevel();
 		System.out.println(getRandomDeathString(player,monster)+((weapon == null) ? "!" : ", Wielding his "+weapon.getName()));
-		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage()+" On stage "+currentStage.stageNum);
+		System.out.println("with "+level+" Levels + "+xp+" Experience and a damage level of "+player.getDamage()+" On stage "+currentStage.getStageNum());
 		System.out.println("after brutally slaying "+kills+" Monsters!");
 		
 	}

@@ -13,7 +13,6 @@ public class EntityMonster extends EntityBase {
 	public static int MONSTER_HEALTH = 80;
 	public static int MONSTER_DAMAGE = 15;
 	public static int MONSTER_DAMAGERANGE = 10;
-	
 	public static int baseHealth = MONSTER_HEALTH ;
 	static int baseDamage = MONSTER_DAMAGE;
 	static int baseDamageRange = MONSTER_DAMAGERANGE;

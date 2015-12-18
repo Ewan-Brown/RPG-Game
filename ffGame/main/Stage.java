@@ -4,9 +4,9 @@ import entities.EntityPlayer;
 
 public class Stage {
 	
-	int stageNum = 0;
-	public int monstersKilled;
-	public int monstersRequired = 3;
+	private int stageNum = 0;
+	private int monstersKilled;
+	private int monstersRequired = 3;
 	int finalStage = 7;
 //	int monstersReqIncrement; TO BE USED LATER
 	
@@ -15,6 +15,9 @@ public class Stage {
 		//to make sure that mult equals > 1!
 		mult = ((stageNum-1) * 0.3) + 1;
 		return mult;
+	}
+	public int getStageNum(){
+		return stageNum;
 	}
 	public Stage(){
 		stageNum = 1;

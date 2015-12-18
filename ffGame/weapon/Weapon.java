@@ -4,12 +4,14 @@ import java.util.Random;
 
 public class Weapon {
 
-	int damage;
-	String name;
-	String type;
-	int value;
-	Modifier modifier = null;
-	public static String[] WEAPON_NAME = {"Sword","Spear","Dagger","War Hammer","Battle Axe","Stick","Crossbow","Bow","Slingshot","BAZOOKA!","Damascus Steel Karambit","Javelin","Great Sword","Long Bow","Big Sharp Thing"}; 
+    private int damage;
+    private String name;
+    private String type;
+    private int value;
+    private Modifier modifier = null;
+	
+	
+	public static String[] WEAPON_NAME = {"Sword","Rat on a Stick","Spear","Dagger","War Hammer","Battle Axe","Stick","Crossbow","Bow","Slingshot","BAZOOKA!","Damascus Steel Karambit","Javelin","Great Sword","Long Bow","Big Sharp Thing","Toothpick"}; 
 	public Weapon(){
 		this.type = getRandomType();
 		this.modifier = getRandomModifier();
@@ -26,6 +28,7 @@ public class Weapon {
 	public int getDamage(){
 		return this.damage;
 	}
+	
 	public String getName(){
 		return this.name;
 	}
@@ -33,6 +36,7 @@ public class Weapon {
 		int pick = new Random().nextInt(Modifier.values().length);
 	    return Modifier.values()[pick];
 	}
+	
 	public enum Modifier{
 		Mod_50("Crappy",0.50),
 		Mod_80("Weak",0.80),

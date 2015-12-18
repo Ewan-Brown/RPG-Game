@@ -198,7 +198,7 @@ public class Game{
 			displayStats.updateDisplay(this);
 			System.out.println(getMult()+"");
 			while(GameOn == true){
-				if(currentStage.stageNum == currentStage.finalStage){
+				if(currentStage.getStageNum() == currentStage.finalStage){
 					BossBattle();
 					GameOn = false;
 				}
@@ -349,7 +349,7 @@ public class Game{
 		sleep();
 		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
 		sleep();
-		System.out.println(player.name+" Has Deeated the Boss!");
+		System.out.println(player.getName()+" Has Defeated the Boss!");
 		sleep();
 		player.PrintStats();
 	}
@@ -367,7 +367,7 @@ public class Game{
 				victim.onAttacked(damage);
 			}
 			else{
-				System.out.println(attacker.name+" Missed!");
+				System.out.println(attacker.getName()+" Missed!");
 				if(attacker instanceof EntityMonster){
 					monsterMisses += 1;
 				}

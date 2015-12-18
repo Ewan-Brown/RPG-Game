@@ -6,12 +6,12 @@ import weapon.Weapon;
 
 public class EntityBase{
 
-	public int health;
-	public int damage;
-	public int damageRange;
-	public String name;
-	public boolean alive = true;
-	private Weapon weapon;
+	protected int health;
+	protected int damage;
+	protected int damageRange;
+	protected String name;
+	protected boolean alive = true;
+	protected Weapon weapon;
 	int missChance = 30;
 	
 	public EntityBase(String name,int health,int damage, int damageRange){

@@ -11,16 +11,25 @@ public class EntityPlayer extends EntityBase{
 	public static int PLAYER_DAMAGERANGE = 10;
 	public static int EXPERIENCE_DROPS = 25;
 	public static int EXP_PER_LEVEL = 100;
-
-	public static int baseHealth = PLAYER_HEALTH ;
-	static int damage = PLAYER_DAMAGE;
-	static int damageRange = PLAYER_DAMAGERANGE;;
-	public int kills = 0;
-	public int xp = 0;
-	public int level = 0;
-	public int damageDealt = 0;
-	public int damageTaken = 0;
 	
+	private static int baseHealth = PLAYER_HEALTH ;
+	private static int damage = PLAYER_DAMAGE;
+	private static int damageRange = PLAYER_DAMAGERANGE;;
+	private int kills = 0;
+	private int exp = 0;
+	private int level = 0;
+	private int damageDealt = 0;
+	private int damageTaken = 0;
+	
+	public int getKills(){
+		return kills;
+	}
+	public int getLevel(){
+		return level;
+	}
+	public int getExp(){
+		return exp;
+	}
 	public EntityPlayer(String name){
 		super(name,baseHealth,damage,damageRange);
 		this.alive = true;
@@ -42,7 +51,6 @@ public class EntityPlayer extends EntityBase{
 		giveExp();
 		tryGiveWeapon(monster.getWeapon());
 	}
-	
 	public void onAttacked(int damage) {
 		this.damageTaken += damage;
 		this.health -= damage;
@@ -84,18 +92,18 @@ public class EntityPlayer extends EntityBase{
 	}
 	public void giveExp(){
 		if(level < 5){
-			xp = xp + bonusExp();
+			exp = exp + bonusExp();
 			//xp =+ EntityStats.EXPERIENCE_DROPS;
-			if (xp >= EXP_PER_LEVEL){
+			if (exp >= EXP_PER_LEVEL){
 				level = level + 1;
-				xp = xp - 100;
+				exp = exp - 100;
 				System.out.println("----LEVEL UP!!!----");
 				baseHealth = baseHealth + 10;
 				damage = damage + 5;
 				health = baseHealth;
 				System.out.println(baseHealth+" BaseHealth");
 			}
-			System.out.println("Experience "+xp+"/"+EXP_PER_LEVEL);
+			System.out.println("Experience "+exp+"/"+EXP_PER_LEVEL);
 		}
 		else{
 			System.out.println("player has reached Max level!");
