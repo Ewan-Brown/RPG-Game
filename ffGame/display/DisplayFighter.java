@@ -58,18 +58,18 @@ public class DisplayFighter implements ActionListener{
 		EntityMonster monster = game.monster;
 		EntityPlayer player = game.player;
 		barPlayerHealth.setMinimum(0);
-		barPlayerHealth.setMaximum(player.baseHealth);
-		barPlayerHealth.setValue(player.health);
+		barPlayerHealth.setMaximum(player.getBaseHealth());
+		barPlayerHealth.setValue(player.getHealth());
 		barMonsterHealth.setMinimum(0);
-		barMonsterHealth.setMaximum(monster.baseHealth);
-		barMonsterHealth.setValue(monster.health);
+		barMonsterHealth.setMaximum(monster.getBaseHealth());
+		barMonsterHealth.setValue(monster.getHealth());
 		barExperience.setMinimum(0);
 		barExperience.setMaximum(player.EXP_PER_LEVEL);
-		barExperience.setValue(player.xp);
+		barExperience.setValue(player.getExp());
 		barKills.setMinimum(0);
-		barKills.setMaximum(currentGame.currentStage.monstersRequired);
-		barKills.setValue(currentGame.currentStage.monstersKilled);
-		txtName.setText(player.name);
+		barKills.setMaximum(currentGame.currentStage.getMonstersRequired());
+		barKills.setValue(currentGame.currentStage.getMonstersKilled());
+		txtName.setText(player.getName());
 		txtHealth.setText(player.getHealth()+"");
 		txtDamage.setText(player.getDamage()+"");
 		if(!(player.getWeapon() == null)){

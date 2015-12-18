@@ -19,9 +19,9 @@ public class DisplayStats {
 	private JTextField textDamageTaken;
 	
 	public void updateDisplay(Game game){
-		textKills.setText(game.player.kills+"");
-		textDamageDealt.setText(game.player.damageDealt+"");
-		textDamageTaken.setText(game.player.damageTaken+"");
+		textKills.setText(game.player.getKills()+"");
+		textDamageDealt.setText(game.player.getDamageDealt()+"");
+		textDamageTaken.setText(game.player.getDamageTaken()+"");
 	}
 	/**
 	 * Launch the application.

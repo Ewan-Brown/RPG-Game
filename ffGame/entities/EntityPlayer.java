@@ -12,15 +12,19 @@ public class EntityPlayer extends EntityBase{
 	public static int EXPERIENCE_DROPS = 25;
 	public static int EXP_PER_LEVEL = 100;
 	
-	private static int baseHealth = PLAYER_HEALTH ;
-	private static int damage = PLAYER_DAMAGE;
-	private static int damageRange = PLAYER_DAMAGERANGE;;
+
 	private int kills = 0;
 	private int exp = 0;
 	private int level = 0;
 	private int damageDealt = 0;
 	private int damageTaken = 0;
 	
+	public int getDamageDealt(){
+		return damageDealt;
+	}
+	public int getDamageTaken(){
+		return damageTaken;
+	}
 	public int getKills(){
 		return kills;
 	}
@@ -31,12 +35,12 @@ public class EntityPlayer extends EntityBase{
 		return exp;
 	}
 	public EntityPlayer(String name){
-		super(name,baseHealth,damage,damageRange);
+		super(name,PLAYER_HEALTH,PLAYER_DAMAGE,PLAYER_DAMAGERANGE);
 		this.alive = true;
 
 	}
 	public void healPlayer(int heal){
-		if(heal + health <= EntityPlayer.baseHealth){
+		if(heal + health <= baseHealth){
 			health = health + heal;;
 			System.out.println(name+" was healed for "+heal+"HP!");
 		}

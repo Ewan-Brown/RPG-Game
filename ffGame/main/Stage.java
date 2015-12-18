@@ -7,7 +7,7 @@ public class Stage {
 	private int stageNum = 0;
 	private int monstersKilled;
 	private int monstersRequired = 3;
-	int finalStage = 7;
+	private int finalStage = 7;
 //	int monstersReqIncrement; TO BE USED LATER
 	
 	public double getMult(){
@@ -16,11 +16,20 @@ public class Stage {
 		mult = ((stageNum-1) * 0.3) + 1;
 		return mult;
 	}
+	public int getFinalStage(){
+		return finalStage;
+	}
 	public int getStageNum(){
 		return stageNum;
 	}
 	public Stage(){
 		stageNum = 1;
+	}
+	public int getMonstersRequired(){
+		return monstersRequired;
+	}
+	public int getMonstersKilled(){
+		return monstersKilled;
 	}
 	public void onMonsterKilled(EntityPlayer player ){
 		monstersKilled += 1;

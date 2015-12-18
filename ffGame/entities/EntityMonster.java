@@ -9,17 +9,13 @@ import java.util.Random;
 
 import entities.EntityBase;
 public class EntityMonster extends EntityBase {
-	
 	public static int MONSTER_HEALTH = 80;
 	public static int MONSTER_DAMAGE = 15;
 	public static int MONSTER_DAMAGERANGE = 10;
-	public static int baseHealth = MONSTER_HEALTH ;
-	static int baseDamage = MONSTER_DAMAGE;
-	static int baseDamageRange = MONSTER_DAMAGERANGE;
 	static String[] MONSTER_NAMES = {"Zombie","Skeleton","Wraith","Bandit","Demon","Platypus","Slime","Cyclops","Dragon","Ogre","Vampire","WereWolf","Unicorn","Ghost","Giant Spider","Deep-Space Kraken","Wendigo","The Thing","Satanic Cultist","Goblin","Weeaboo","WHATARETHOOOSE?!?","Ninja Pirate","Slenderman","Rabid Butterfly","The Blob","Giant","Orc","999","Bat","Pokeman","Alien","Barbarian","Bee Swarm","Scorpion","Wolf Pack","Rogue Wizard","ERROR 404"};
 
 	public EntityMonster(String name,double mult,double wepSpawn) {
-		  super(name,multStats(mult,baseHealth) ,multStats(mult,baseDamage) , baseDamageRange);
+		  super(name,multStats(mult,MONSTER_HEALTH) ,multStats(mult,MONSTER_DAMAGE) , MONSTER_DAMAGERANGE);
 		//TODO health and damage randomizer???
 		this.name = getRandomName();
 		if(this.shouldSpawnWeapon(wepSpawn)){

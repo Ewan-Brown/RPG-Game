@@ -12,11 +12,13 @@ public class EntityBase{
 	protected String name;
 	protected boolean alive = true;
 	protected Weapon weapon;
-	int missChance = 30;
+	protected int baseHealth;
+	protected int missChance = 30;
 	
 	public EntityBase(String name,int health,int damage, int damageRange){
 		this.name = name;
 		this.health = health;
+		this.baseHealth = health;
 		this.damage = damage;
 		this.damageRange = damageRange;
 	}
@@ -44,6 +46,9 @@ public class EntityBase{
 	}
 	public int getHealth(){
 		return health;
+	}
+	public int getBaseHealth(){
+		return baseHealth;
 	}
 	public int getDamage(){
 		return (getWeapon() == null) ? getRawDamage() : getRawDamage() + getWeaponDamage();

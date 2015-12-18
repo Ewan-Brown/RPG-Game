@@ -198,7 +198,7 @@ public class Game{
 			displayStats.updateDisplay(this);
 			System.out.println(getMult()+"");
 			while(GameOn == true){
-				if(currentStage.getStageNum() == currentStage.finalStage){
+				if(currentStage.getStageNum() == currentStage.getFinalStage()){
 					BossBattle();
 					GameOn = false;
 				}
