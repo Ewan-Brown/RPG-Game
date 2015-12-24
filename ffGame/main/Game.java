@@ -10,9 +10,40 @@ import entities.EntityBoss;
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.GameMethods;
+import weapon.WeaponConstants;
 
 
 public class Game{
+	
+	private int CONFUSE = WeaponConstants.TYPE_CONFUSE;
+	private int POISON = WeaponConstants.TYPE_POISON;
+	private int FLAME = WeaponConstants.TYPE_FLAME;
+	
+	private int poisonTime = 3;
+	private int poisonDamage = 5;
+	private double poisonChance = 0.3;
+	
+	String playerName;
+	boolean fastMode;
+	Difficulty difficulty;
+	public EntityPlayer player;
+	public EntityMonster monster;
+	boolean GameOn = true;
+	public Stage currentStage;
+	DisplayFighter displayFighter;
+	DisplayStats displayStats;
+	static Game game;
+	double weaponSpawn = 30.0;
+	double missChance = 20.0;
+	boolean paused = false;
+	int monsterMisses;
+	int playerMisses;
+	int monsterAttacks;
+	int playerAttacks;
+	DisplayStart displayStart;
+	DisplayLogs logs;
+	StartValues values = new StartValues();
+	int sleepMillis = 500;
 	
 	public void pauseGame(){
 		if(paused == false){
@@ -70,22 +101,7 @@ public class Game{
 		public int mult(int a){
 			return (int)Math.round(getMult()*a);
 		}
-		static public Difficulty getDifficulty(int a){
-			Difficulty difficulty = null;
-			if(a == 1){
-				difficulty = Easy;
-			}
-			if(a == 2){
-				difficulty = Normal;
-			}
-			if(a == 3){
-				difficulty = Hard;
-			}
-			if(a == 4){
-				difficulty = Uber;
-			}
-			return difficulty;
-		}
+		
 	}
 	
 	public boolean didMiss(){
@@ -97,27 +113,7 @@ public class Game{
 			return false;
 		}
 	}
-	String playerName;
-	boolean fastMode;
-	Difficulty difficulty;
-	public EntityPlayer player;
-	public EntityMonster monster;
-	boolean GameOn = true;
-	public Stage currentStage;
-	DisplayFighter displayFighter;
-	DisplayStats displayStats;
-	static Game game;
-	double weaponSpawn = 30.0;
-	double missChance = 20.0;
-	boolean paused = false;
-	int monsterMisses;
-	int playerMisses;
-	int monsterAttacks;
-	int playerAttacks;
-	DisplayStart displayStart;
-	DisplayLogs logs;
-	StartValues values = new StartValues();
-	int sleepMillis = 500;
+	
 	
 	
 	public double getMissChance(){
@@ -260,6 +256,9 @@ public class Game{
 		
 	}
 	public void battleActive(){
+		if(monster.getWeapon() != null){
+			monster.getWeapon().setType(POISON, true);
+		}
 		System.out.println(" ");
 		sleep();
 		currentStage.printStats();
@@ -280,6 +279,8 @@ public class Game{
 		
 		do{
 			if(paused == false){
+				player.updateEffects();
+				monster.updateEffects();
 				sleep();
 				tryAttack(player, monster);
 				displayFighter.updateDisplay(this);
@@ -365,6 +366,14 @@ public class Game{
 			int damage = attacker.onAttacking();
 			if((damage > 0)){
 				victim.onAttacked(damage);
+				if(attacker.getWeapon() != null){
+					if(attacker.getWeapon().hasType(POISON)){
+						double rand = Math.random();
+						if(rand < poisonChance){
+							victim.givePoison(poisonDamage, poisonTime);
+						}
+					}
+				}
 			}
 			else{
 				System.out.println(attacker.getName()+" Missed!");

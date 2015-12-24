@@ -1,6 +1,7 @@
 package entities;
 
 
+import effects.Poisoned;
 import main.GameMethods;
 import weapon.Weapon;
 
@@ -14,6 +15,7 @@ public class EntityBase{
 	protected Weapon weapon;
 	protected int baseHealth;
 	protected int missChance = 30;
+	protected Poisoned poison = new Poisoned(0,0);
 	
 	public EntityBase(String name,int health,int damage, int damageRange){
 		this.name = name;
@@ -26,9 +28,27 @@ public class EntityBase{
 		this.alive = false;
 		System.out.println(name+" died!");
 	}
-	
+	public void	updateEffects(){
+		if(poison.isActive()){
+			this.poisonDamage();
+		}
+	}
+	public void givePoison(int dmg,int time){
+		if(poison.getDamage() < dmg){
+			poison.setDamage(dmg);
+		}
+		if(poison.getTimeLeft() < time){
+			poison.setTime(time);
+		}
+		System.out.println(name+" Poisoned for "+poison.getDamage()+" seconds for "+poison.getTimeLeft()+" seconds");
+	}
+	public void poisonDamage(){
+		int dmg = this.poison.getDamage();
+		doDamage(dmg);
+		System.out.println(name+" was poison-damaged for "+dmg);
+	}
 	public void onAttacked(int dmg) {
-		this.health -= dmg;
+		doDamage(dmg);
 		System.out.println(this.name+" was hit for "+dmg+" damage!");
 		if(health <= 0){
 			onDeath();
@@ -37,6 +57,9 @@ public class EntityBase{
 			System.out.println(name+"'s Health is critically low!!!");
 		}
 		
+	}
+	protected void doDamage(int dmg){
+		this.health = this.health - dmg;
 	}
 	public int getWeaponDamage(){
 		return getWeapon().getDamage();
