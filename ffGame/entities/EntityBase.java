@@ -111,6 +111,14 @@ public class EntityBase{
 			return false;
 		}
 	}
+	public boolean isPoisoned(){
+		if(poison.isActive()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	
 }

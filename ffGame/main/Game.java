@@ -1,7 +1,7 @@
 package main; 
 
 import java.awt.EventQueue;
-import display.DisplayFighter;
+import display.DisplayFighters;
 import display.DisplayLogs;
 import display.DisplayStart;
 import display.DisplayStats;
@@ -19,9 +19,9 @@ public class Game{
 	private int POISON = WeaponConstants.TYPE_POISON;
 	private int FLAME = WeaponConstants.TYPE_FLAME;
 	
-	private int poisonTime = 3;
+	private int poisonTime = 5;
 	private int poisonDamage = 5;
-	private double poisonChance = 0.3;
+	private double poisonChance = 1.0;
 	
 	String playerName;
 	boolean fastMode;
@@ -30,11 +30,12 @@ public class Game{
 	public EntityMonster monster;
 	boolean GameOn = true;
 	public Stage currentStage;
-	DisplayFighter displayFighter;
+	DisplayFighters displayFighters;
 	DisplayStats displayStats;
 	static Game game;
-	double weaponSpawn = 30.0;
-	double missChance = 20.0;
+	//TODO TEMP VALUES FOR TESTING! >>
+	double weaponSpawn = 100.0;
+	double missChance = 0.0;
 	boolean paused = false;
 	int monsterMisses;
 	int playerMisses;
@@ -144,8 +145,8 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					displayFighter = new DisplayFighter();
-					displayFighter.frame.setVisible(true);
+					displayFighters = new DisplayFighters();
+					displayFighters.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -190,7 +191,7 @@ public class Game{
 			gameStart();
 			currentStage = new Stage();
 			battleStart();
-			displayFighter.updateDisplay(this);
+			displayFighters.updateDisplay(this);
 			displayStats.updateDisplay(this);
 			System.out.println(getMult()+"");
 			while(GameOn == true){
@@ -255,9 +256,16 @@ public class Game{
 		sleep();
 		
 	}
+	public void updateEffects(){
+		player.updateEffects();
+		monster.updateEffects();
+	}
+	public void updateDisplays(){
+		displayFighters.updateDisplay(this);
+		displayStats.updateDisplay(this);
+	}
 	public void battleActive(){
 		if(monster.getWeapon() != null){
-			monster.getWeapon().setType(POISON, true);
 		}
 		System.out.println(" ");
 		sleep();
@@ -270,7 +278,7 @@ public class Game{
 				monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
 				monster.PrintStats();
 				sleep();
-				displayFighter.updateDisplay(this);
+				displayFighters.updateDisplay(this);
 			}
 		}
 		System.out.println("------FIGHT!------");
@@ -279,16 +287,15 @@ public class Game{
 		
 		do{
 			if(paused == false){
-				player.updateEffects();
-				monster.updateEffects();
+				updateEffects();
 				sleep();
 				tryAttack(player, monster);
-				displayFighter.updateDisplay(this);
-				displayStats.updateDisplay(this);
+				updateDisplays();
 				sleep();
 				tryAttack(monster, player);
-				displayFighter.updateDisplay(this);
-				displayStats.updateDisplay(this);
+				updateDisplays();
+				updateEffects();
+				updateDisplays();
 				f1 = player.isAlive();
 				f2 = monster.isAlive();
 			}
@@ -328,7 +335,7 @@ public class Game{
 		System.out.println(" ");
 		sleep();
 		player.onKillMonster(monster);
-		displayFighter.updateDisplay(this);
+		displayFighters.updateDisplay(this);
 	}
 	public void BossBattle(){
 		sleep();
@@ -368,9 +375,11 @@ public class Game{
 				victim.onAttacked(damage);
 				if(attacker.getWeapon() != null){
 					if(attacker.getWeapon().hasType(POISON)){
+						System.out.println("WEAPON IS POISONOUS!");
 						double rand = Math.random();
 						if(rand < poisonChance){
 							victim.givePoison(poisonDamage, poisonTime);
+							System.out.println("POISONED!!!!!");
 						}
 					}
 				}

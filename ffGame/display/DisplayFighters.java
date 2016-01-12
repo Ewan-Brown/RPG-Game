@@ -3,28 +3,19 @@ package display;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import com.sun.javafx.tk.Toolkit.Task;
-
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.Game;
-
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 
-public class DisplayFighter implements ActionListener{
+public class DisplayFighters implements ActionListener{
 
 	public JFrame frame;
 	public JLabel lblPlayer;
@@ -48,6 +39,8 @@ public class DisplayFighter implements ActionListener{
 	
 	public Game game = null;
 	private JProgressBar barExperience;
+	private JTextField txtPlayerIsPoisoned;
+	private JTextField txtMonsterIsPoisoned;
 
 	/**
 	 * Launch the application.
@@ -89,6 +82,10 @@ public class DisplayFighter implements ActionListener{
 			txtMonsterWeaponName.setText(monster.getWeapon().getName());
 			txtMonsterWeaponDamage.setText(monster.getWeaponDamage()+"");
 		}
+
+		txtPlayerIsPoisoned.setText(player.isPoisoned()+"");
+		txtMonsterIsPoisoned.setText(monster.isPoisoned()+"");
+		
 		
 	}
 	/**
@@ -98,7 +95,7 @@ public class DisplayFighter implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DisplayFighter window = new DisplayFighter();
+					DisplayFighters window = new DisplayFighters();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -110,7 +107,7 @@ public class DisplayFighter implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public DisplayFighter() {
+	public DisplayFighters() {
 		initialize();
 	}
 
@@ -119,7 +116,7 @@ public class DisplayFighter implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 646, 506);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -164,45 +161,45 @@ public class DisplayFighter implements ActionListener{
 		
 		lblMonster = new JLabel("MONSTER");
 		lblMonster.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblMonster.setBounds(305, 13, 81, 22);
+		lblMonster.setBounds(501, 13, 81, 22);
 		frame.getContentPane().add(lblMonster);
 		
 		txtMonsterName = new JTextPane();
 		txtMonsterName.setText("MonsterName");
 		txtMonsterName.setEditable(false);
-		txtMonsterName.setBounds(280, 54, 116, 22);
+		txtMonsterName.setBounds(476, 54, 116, 22);
 		frame.getContentPane().add(txtMonsterName);
 		
 		txtMonsterHealth = new JTextPane();
 		txtMonsterHealth.setText("Health");
 		txtMonsterHealth.setEditable(false);
-		txtMonsterHealth.setBounds(280, 89, 116, 22);
+		txtMonsterHealth.setBounds(476, 89, 116, 22);
 		frame.getContentPane().add(txtMonsterHealth);
 		
 		txtMonsterDamage = new JTextPane();
 		txtMonsterDamage.setText("Damage");
 		txtMonsterDamage.setEditable(false);
-		txtMonsterDamage.setBounds(280, 124, 116, 22);
+		txtMonsterDamage.setBounds(476, 124, 116, 22);
 		frame.getContentPane().add(txtMonsterDamage);
 		
 		lblMonsterWeapon = new JLabel("Weapon");
-		lblMonsterWeapon.setBounds(306, 154, 56, 16);
+		lblMonsterWeapon.setBounds(502, 154, 56, 16);
 		frame.getContentPane().add(lblMonsterWeapon);
 		
 		txtMonsterWeaponName = new JTextPane();
 		txtMonsterWeaponName.setText("Name");
 		txtMonsterWeaponName.setEditable(false);
-		txtMonsterWeaponName.setBounds(280, 169, 116, 22);
+		txtMonsterWeaponName.setBounds(476, 169, 116, 22);
 		frame.getContentPane().add(txtMonsterWeaponName);
 		
 		txtMonsterWeaponDamage = new JTextPane();
 		txtMonsterWeaponDamage.setText("Damage");
 		txtMonsterWeaponDamage.setEditable(false);
-		txtMonsterWeaponDamage.setBounds(280, 204, 116, 22);
+		txtMonsterWeaponDamage.setBounds(476, 204, 116, 22);
 		frame.getContentPane().add(txtMonsterWeaponDamage);
 		
 		btnPause = new JButton("Pause");
-		btnPause.setBounds(150, 37, 97, 189);
+		btnPause.setBounds(262, 37, 97, 189);
 		frame.getContentPane().add(btnPause);
 		btnPause.addActionListener(this);
 		
@@ -213,7 +210,7 @@ public class DisplayFighter implements ActionListener{
 		barPlayerHealth.setStringPainted(true);
 		
 		barMonsterHealth = new JProgressBar();
-		barMonsterHealth.setBounds(280, 39, 116, 14);
+		barMonsterHealth.setBounds(476, 39, 116, 14);
 		frame.getContentPane().add(barMonsterHealth);
 		barMonsterHealth.setValue(0);
 		barMonsterHealth.setStringPainted(true);
@@ -221,14 +218,32 @@ public class DisplayFighter implements ActionListener{
 		barExperience = new JProgressBar();
 		barExperience.setValue(0);
 		barExperience.setStringPainted(true);
-		barExperience.setBounds(12, 226, 116, 14);
+		barExperience.setBounds(134, 132, 116, 14);
 		frame.getContentPane().add(barExperience);
 		
 		barKills = new JProgressBar();
 		barKills.setValue(0);
 		barKills.setStringPainted(true);
-		barKills.setBounds(62, 239, 282, 14);
+		barKills.setBounds(176, 239, 282, 14);
 		frame.getContentPane().add(barKills);
+		
+		JLabel lblPlayerPoisoned = new JLabel("Poisoned");
+		lblPlayerPoisoned.setBounds(37, 307, 56, 16);
+		frame.getContentPane().add(lblPlayerPoisoned);
+		
+		txtPlayerIsPoisoned = new JTextField();
+		txtPlayerIsPoisoned.setBounds(12, 322, 116, 22);
+		frame.getContentPane().add(txtPlayerIsPoisoned);
+		txtPlayerIsPoisoned.setColumns(10);
+		
+		txtMonsterIsPoisoned = new JTextField();
+		txtMonsterIsPoisoned.setColumns(10);
+		txtMonsterIsPoisoned.setBounds(476, 322, 116, 22);
+		frame.getContentPane().add(txtMonsterIsPoisoned);
+		
+		JLabel lblMonsterPoisoned = new JLabel("Poisoned");
+		lblMonsterPoisoned.setBounds(501, 304, 56, 22);
+		frame.getContentPane().add(lblMonsterPoisoned);
 
 
 	}

@@ -15,9 +15,11 @@ public class Poisoned {
 	}
 	public void setDamage(int dmg){
 		this.damage = dmg;
+		this.active = true;
 	}
 	public void setTime(int time){
-		
+		this.timeLeft = time;
+		this.active = true;
 	}
 	public void tick(){
 		if(timeLeft < 0){

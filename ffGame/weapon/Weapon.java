@@ -9,6 +9,7 @@ public class Weapon {
     private String type;
     private Modifier modifier;
 	private Poison poisonStats;
+	private double poisonChance = 100;
 	
 	private int poisonDamage = 5;
 	private int totalTime = 2;
@@ -22,6 +23,10 @@ public class Weapon {
 		this.modifier = getRandomModifier();
 		this.damage = (int) (WeaponConstants.BASE_WEAPON_DAMAGE * modifier.multiplier);
 		this.name = modifier.name+" "+type;
+		if(spawnPoison() == true){
+			setType(POISON,true);
+		}
+		this.name = getTypeString() + name;
 		System.out.println(name + " Created!");
 	}
 	public void setType(int type,boolean setting){
@@ -33,9 +38,31 @@ public class Weapon {
 	public boolean hasType(int type){
 		return attribute[type];
 	}
+	public String getTypeString(){
+		String string = "";
+		if(attribute[POISON] == true){
+			string = string + "Poisonous ";
+		}
+		if(attribute[CONFUSE] == true){
+			string = string + "Confusing ";
+		}
+		if(attribute[FLAME] == true){
+			string = string + "Flaming ";
+		}
+		return string;
+	}
 	public static String getRandomType(){
 		int pick = new Random().nextInt(WEAPON_NAME.length);
 		return WEAPON_NAME[pick];
+	}
+	private boolean spawnPoison(){
+		double rand = Math.random();
+		if (rand * 100 < poisonChance){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	public int getDamage(){
 		return this.damage;
@@ -68,6 +95,5 @@ public class Weapon {
 			return multiplier;
 			
 		}
-	}
-	
+	}	
 }
