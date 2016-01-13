@@ -12,7 +12,8 @@ FIX:
 
 WIP:
 	TEST POISON EFFECT/ STACKTRACE
-	DisplayFighters - Redo Health Display! (Total/Actual)
+		-Implement other Effects
+	DisplayFighters - Redo Health Display! (Total vs Actual)
 
 TODO:
 	
