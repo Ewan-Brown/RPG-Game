@@ -137,6 +137,15 @@ public class Game{
 			}
 		}
 	}
+	public void checkPaused(){
+		do{
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}while(paused == true);
+	}
 	public static void main(String[] args) {
 		game = new Game();
 		game.runGame();
@@ -286,26 +295,28 @@ public class Game{
 		boolean f2 = true;
 		
 		do{
-			if(paused == false){
-				updateEffects();
-				sleep();
-				tryAttack(player, monster);
-				updateDisplays();
-				sleep();
-				tryAttack(monster, player);
-				updateDisplays();
-				updateEffects();
-				updateDisplays();
-				f1 = player.isAlive();
-				f2 = monster.isAlive();
-			}
-			else{
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
+//			if(paused == false){
+			checkPaused();
+			updateEffects();
+			sleep();
+			tryAttack(player, monster);
+			updateDisplays();
+			checkPaused();
+			sleep();
+			tryAttack(monster, player);
+			updateDisplays();
+			updateEffects();
+			updateDisplays();
+			f1 = player.isAlive();
+			f2 = monster.isAlive();
+//			}
+//			else{
+//				try {
+//					Thread.sleep(100);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
 			
 			
 		}while(f1 && f2);
