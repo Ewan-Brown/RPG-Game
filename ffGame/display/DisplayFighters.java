@@ -41,6 +41,7 @@ public class DisplayFighters implements ActionListener{
 	private JProgressBar barExperience;
 	private JTextField txtPlayerIsPoisoned;
 	private JTextField txtMonsterIsPoisoned;
+	private JTextField txtLevel;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class DisplayFighters implements ActionListener{
 
 		txtPlayerIsPoisoned.setText(player.isPoisoned()+"");
 		txtMonsterIsPoisoned.setText(monster.isPoisoned()+"");
+		txtLevel.setText(player.getLevel()+"");
 		
 		
 	}
@@ -116,101 +118,101 @@ public class DisplayFighters implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 646, 506);
+		frame.setBounds(100, 100, 829, 520);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		lblPlayer = new JLabel("PLAYER");
 		lblPlayer.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPlayer.setBounds(12, 13, 81, 22);
+		lblPlayer.setBounds(110, 25, 81, 22);
 		frame.getContentPane().add(lblPlayer);
 		
 		txtHealth = new JTextPane();
 		txtHealth.setEditable(false);
 		txtHealth.setText("Health");
-		txtHealth.setBounds(12, 89, 116, 22);
+		txtHealth.setBounds(110, 101, 116, 22);
 		frame.getContentPane().add(txtHealth);
 		
 		txtName = new JTextPane();
 		txtName.setEditable(false);
 		txtName.setText("Name");
-		txtName.setBounds(12, 54, 116, 22);
+		txtName.setBounds(86, 66, 154, 22);
 		frame.getContentPane().add(txtName);
 		
 		txtDamage = new JTextPane();
 		txtDamage.setEditable(false);
 		txtDamage.setText("Damage");
-		txtDamage.setBounds(12, 124, 116, 22);
+		txtDamage.setBounds(110, 136, 116, 22);
 		frame.getContentPane().add(txtDamage);
 		
 		lblWeapon = new JLabel("Weapon");
-		lblWeapon.setBounds(38, 154, 56, 16);
+		lblWeapon.setBounds(142, 298, 56, 16);
 		frame.getContentPane().add(lblWeapon);
 		
 		txtWeaponName = new JTextPane();
 		txtWeaponName.setEditable(false);
 		txtWeaponName.setText("Name");
-		txtWeaponName.setBounds(12, 169, 116, 22);
+		txtWeaponName.setBounds(74, 313, 206, 22);
 		frame.getContentPane().add(txtWeaponName);
 		
 		txtWeaponDamage = new JTextPane();
 		txtWeaponDamage.setEditable(false);
 		txtWeaponDamage.setText("Damage");
-		txtWeaponDamage.setBounds(12, 204, 116, 22);
+		txtWeaponDamage.setBounds(116, 348, 116, 22);
 		frame.getContentPane().add(txtWeaponDamage);
 		
 		lblMonster = new JLabel("MONSTER");
 		lblMonster.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblMonster.setBounds(501, 13, 81, 22);
+		lblMonster.setBounds(599, 25, 81, 22);
 		frame.getContentPane().add(lblMonster);
 		
 		txtMonsterName = new JTextPane();
 		txtMonsterName.setText("MonsterName");
 		txtMonsterName.setEditable(false);
-		txtMonsterName.setBounds(476, 54, 116, 22);
+		txtMonsterName.setBounds(560, 66, 146, 22);
 		frame.getContentPane().add(txtMonsterName);
 		
 		txtMonsterHealth = new JTextPane();
 		txtMonsterHealth.setText("Health");
 		txtMonsterHealth.setEditable(false);
-		txtMonsterHealth.setBounds(476, 89, 116, 22);
+		txtMonsterHealth.setBounds(574, 101, 116, 22);
 		frame.getContentPane().add(txtMonsterHealth);
 		
 		txtMonsterDamage = new JTextPane();
 		txtMonsterDamage.setText("Damage");
 		txtMonsterDamage.setEditable(false);
-		txtMonsterDamage.setBounds(476, 124, 116, 22);
+		txtMonsterDamage.setBounds(574, 136, 116, 22);
 		frame.getContentPane().add(txtMonsterDamage);
 		
 		lblMonsterWeapon = new JLabel("Weapon");
-		lblMonsterWeapon.setBounds(502, 154, 56, 16);
+		lblMonsterWeapon.setBounds(600, 298, 56, 16);
 		frame.getContentPane().add(lblMonsterWeapon);
 		
 		txtMonsterWeaponName = new JTextPane();
 		txtMonsterWeaponName.setText("Name");
 		txtMonsterWeaponName.setEditable(false);
-		txtMonsterWeaponName.setBounds(476, 169, 116, 22);
+		txtMonsterWeaponName.setBounds(524, 313, 206, 22);
 		frame.getContentPane().add(txtMonsterWeaponName);
 		
 		txtMonsterWeaponDamage = new JTextPane();
 		txtMonsterWeaponDamage.setText("Damage");
 		txtMonsterWeaponDamage.setEditable(false);
-		txtMonsterWeaponDamage.setBounds(476, 204, 116, 22);
+		txtMonsterWeaponDamage.setBounds(574, 348, 116, 22);
 		frame.getContentPane().add(txtMonsterWeaponDamage);
 		
 		btnPause = new JButton("Pause");
-		btnPause.setBounds(262, 37, 97, 189);
+		btnPause.setBounds(360, 49, 97, 189);
 		frame.getContentPane().add(btnPause);
 		btnPause.addActionListener(this);
 		
 		barPlayerHealth = new JProgressBar();
-		barPlayerHealth.setBounds(12, 39, 116, 14);
+		barPlayerHealth.setBounds(110, 51, 116, 14);
 		frame.getContentPane().add(barPlayerHealth);
 		barPlayerHealth.setValue(0);
 		barPlayerHealth.setStringPainted(true);
 		
 		barMonsterHealth = new JProgressBar();
-		barMonsterHealth.setBounds(476, 39, 116, 14);
+		barMonsterHealth.setBounds(574, 51, 116, 14);
 		frame.getContentPane().add(barMonsterHealth);
 		barMonsterHealth.setValue(0);
 		barMonsterHealth.setStringPainted(true);
@@ -218,32 +220,37 @@ public class DisplayFighters implements ActionListener{
 		barExperience = new JProgressBar();
 		barExperience.setValue(0);
 		barExperience.setStringPainted(true);
-		barExperience.setBounds(134, 132, 116, 14);
+		barExperience.setBounds(238, 144, 116, 14);
 		frame.getContentPane().add(barExperience);
 		
 		barKills = new JProgressBar();
 		barKills.setValue(0);
 		barKills.setStringPainted(true);
-		barKills.setBounds(176, 239, 282, 14);
+		barKills.setBounds(278, 271, 282, 14);
 		frame.getContentPane().add(barKills);
 		
 		JLabel lblPlayerPoisoned = new JLabel("Poisoned");
-		lblPlayerPoisoned.setBounds(37, 307, 56, 16);
+		lblPlayerPoisoned.setBounds(136, 171, 56, 16);
 		frame.getContentPane().add(lblPlayerPoisoned);
 		
 		txtPlayerIsPoisoned = new JTextField();
-		txtPlayerIsPoisoned.setBounds(12, 322, 116, 22);
+		txtPlayerIsPoisoned.setBounds(110, 189, 116, 22);
 		frame.getContentPane().add(txtPlayerIsPoisoned);
 		txtPlayerIsPoisoned.setColumns(10);
 		
 		txtMonsterIsPoisoned = new JTextField();
 		txtMonsterIsPoisoned.setColumns(10);
-		txtMonsterIsPoisoned.setBounds(476, 322, 116, 22);
+		txtMonsterIsPoisoned.setBounds(574, 189, 116, 22);
 		frame.getContentPane().add(txtMonsterIsPoisoned);
 		
 		JLabel lblMonsterPoisoned = new JLabel("Poisoned");
-		lblMonsterPoisoned.setBounds(501, 304, 56, 22);
+		lblMonsterPoisoned.setBounds(600, 171, 56, 22);
 		frame.getContentPane().add(lblMonsterPoisoned);
+		
+		txtLevel = new JTextField();
+		txtLevel.setBounds(238, 109, 116, 22);
+		frame.getContentPane().add(txtLevel);
+		txtLevel.setColumns(10);
 
 
 	}

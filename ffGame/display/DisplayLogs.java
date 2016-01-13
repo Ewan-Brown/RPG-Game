@@ -16,10 +16,7 @@ import javax.swing.text.DefaultCaret;
 
 public class DisplayLogs extends WindowAdapter implements WindowListener,  ActionListener, Runnable{
 
-//	public void printLine(String output){
-//		output = textOutput.getText()+"\n"+output;
-//		textOutput.setText(output);
-//	}
+// Made this class based on a tutorial, not sure what all of it does/how it works!
 	
 	private JFrame frame;
 	 	private JTextArea textArea;
@@ -55,6 +52,7 @@ public class DisplayLogs extends WindowAdapter implements WindowListener,  Actio
 	 
 	 		frame.addWindowListener(this);
 	 		button.addActionListener(this);
+	 		
 	 
 	 		try
 	 		{
