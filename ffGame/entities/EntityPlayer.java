@@ -10,7 +10,7 @@ public class EntityPlayer extends EntityBase{
 	public static int PLAYER_DAMAGE = 20;
 	public static int PLAYER_DAMAGERANGE = 10;
 	public static int EXPERIENCE_DROPS = 25;
-	public static int EXP_PER_LEVEL = 100;
+	public int EXP_PER_LEVEL = 100;
 	
 
 	private int kills = 0;
