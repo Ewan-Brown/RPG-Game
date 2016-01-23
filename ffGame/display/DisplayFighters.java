@@ -18,24 +18,24 @@ import javax.swing.JProgressBar;
 public class DisplayFighters implements ActionListener{
 
 	public JFrame frame;
-	public JLabel lblPlayer;
-	public JTextPane txtHealth;
-	public JTextPane txtName;
-	public JTextPane txtDamage;
-	public JLabel lblWeapon;
-	public JTextPane txtWeaponName;
-	public JTextPane txtWeaponDamage;
-	public JLabel lblMonster;
-	public JTextPane txtMonsterName;
-	public JTextPane txtMonsterHealth;
-	public JTextPane txtMonsterDamage;
-	public JLabel lblMonsterWeapon;
-	public JTextPane txtMonsterWeaponName;
-	public JButton btnPause;
-	public JProgressBar barPlayerHP;
-	public JTextPane txtMonsterWeaponDamage;
-	public JProgressBar barMonsterHP;
-	public JProgressBar barKills;
+	private JLabel lblPlayer;
+	private JTextPane txtHealth;
+	private JTextPane txtName;
+	private JTextPane txtDamage;
+	private JLabel lblWeapon;
+	private JTextPane txtWeaponName;
+	private JTextPane txtWeaponDamage;
+	private JLabel lblMonster;
+	private JTextPane txtMonsterName;
+	private JTextPane txtMonsterHealth;
+	private JTextPane txtMonsterDamage;
+	private JLabel lblMonsterWeapon;
+	private JTextPane txtMonsterWeaponName;
+	private JButton btnPause;
+	private JProgressBar barPlayerHP;
+	private JTextPane txtMonsterWeaponDamage;
+	private JProgressBar barMonsterHP;
+	private JProgressBar barKills;
 	
 	public Game game = null;
 	private JProgressBar barExperience;
@@ -46,6 +46,10 @@ public class DisplayFighters implements ActionListener{
 	private JLabel lblLevel;
 	private JTextPane txtPlayerMaxHP;
 	private JTextPane txtMonsterMaxHP;
+	private JTextField txtStage;
+	private JTextField txtMult;
+	private JLabel lblMultiplier ;
+	private JLabel lblStage;
 
 	/**
 	 * Launch the application.
@@ -89,6 +93,8 @@ public class DisplayFighters implements ActionListener{
 			txtMonsterWeaponName.setText(monster.getWeapon().getName());
 			txtMonsterWeaponDamage.setText(monster.getWeaponDamage()+"");
 		}
+		txtStage.setText(game.currentStage.getStageNum()+"");
+		txtMult.setText(game.currentStage.getMult()+"");
 
 		txtPlayerIsPoisoned.setText(player.isPoisoned()+"");
 		txtMonsterIsPoisoned.setText(monster.isPoisoned()+"");
@@ -273,6 +279,24 @@ public class DisplayFighters implements ActionListener{
 		txtMonsterMaxHP.setEditable(false);
 		txtMonsterMaxHP.setBounds(626, 84, 90, 22);
 		frame.getContentPane().add(txtMonsterMaxHP);
+		
+		txtStage = new JTextField();
+		txtStage.setBounds(349, 306, 116, 22);
+		frame.getContentPane().add(txtStage);
+		txtStage.setColumns(10);
+		
+		lblStage = new JLabel("Stage");
+		lblStage.setBounds(383, 287, 56, 16);
+		frame.getContentPane().add(lblStage);
+		
+		lblMultiplier = new JLabel("Multiplier");
+		lblMultiplier.setBounds(383, 333, 56, 16);
+		frame.getContentPane().add(lblMultiplier);
+		
+		txtMult = new JTextField();
+		txtMult.setBounds(349, 359, 116, 22);
+		frame.getContentPane().add(txtMult);
+		txtMult.setColumns(10);
 
 
 	}
