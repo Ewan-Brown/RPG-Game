@@ -36,8 +36,19 @@ public class EntityMonster extends EntityBase {
 		}
 		return a;
 	}
-	public EntityMonster(String name, int health,int damage,int damageRange){
+	public EntityMonster(String name, int health,int damage,int damageRange,double wepSpawn){
 		super(name,health,damage,damageRange);
+		if(this.shouldSpawnWeapon(wepSpawn)){
+			Weapon weapon = new Weapon();
+			this.giveWeapon(weapon);
+		}
+	}
+	public EntityMonster(){
+		super("Gaben Laser Beam",1,9001,1);
+		if(this.shouldSpawnWeapon(50)){
+			Weapon weapon = new Weapon();
+			this.giveWeapon(weapon);
+		}
 	}
 	public void onDeath(){
 		this.alive = false;

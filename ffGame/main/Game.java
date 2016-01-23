@@ -1,6 +1,8 @@
 package main; 
 
 import java.awt.EventQueue;
+
+import display.DisplayDylan;
 import display.DisplayFighters;
 import display.DisplayLogs;
 import display.DisplayStart;
@@ -26,12 +28,14 @@ public class Game{
 	String playerName;
 	boolean fastMode;
 	Difficulty difficulty;
+	public boolean dylanDrive;
 	public EntityPlayer player;
 	public EntityMonster monster;
 	boolean GameOn = true;
 	public Stage currentStage;
 	DisplayFighters displayFighters;
 	DisplayStats displayStats;
+	DisplayDylan displayDylan;
 	static Game game;
 	//TODO TEMP VALUES FOR TESTING! >>
 	double weaponSpawn = 100.0;
@@ -164,6 +168,16 @@ public class Game{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					displayDylan = new DisplayDylan();
+					displayDylan.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 					displayStats = new DisplayStats();
 					displayStats.frame.setVisible(true);
 				} catch (Exception e) {
@@ -238,6 +252,7 @@ public class Game{
 		this.playerName = values.playerName;
 		this.fastMode = values.fastMode;
 		this.sleepMillis = values.sleepMillis;
+		this.dylanDrive = displayDylan.tglbtnDylan.isSelected();
 		
 //		System.out.println("Fastmode? press 1 for fastmode");
 //		if (scan.nextInt() == 1){
@@ -257,8 +272,16 @@ public class Game{
 		//initialize monsters/player
 		//begin fight!
 		player = null;
-		player = GameMethods.PlayerSpawn(playerName);
-		monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
+		if(dylanDrive){
+			player = GameMethods.PlayerSpawn("John");
+			//TODO add a EntityDylan subclass of monster instead of this weird constructor
+			monster = new EntityMonster();
+			
+		}
+		else{
+			player = GameMethods.PlayerSpawn(playerName);
+			monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
+		}
 		player.PrintStats();
 		sleep();
 		monster.PrintStats();
@@ -285,6 +308,10 @@ public class Game{
 		if(!(monster instanceof EntityBoss)){
 			if(!monster.isAlive()){
 				monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
+				if(dylanDrive){
+					//TODO add a EntityDylan subclass of monster instead of this weird constructor
+					monster = new EntityMonster();
+				}
 				monster.PrintStats();
 				sleep();
 				displayFighters.updateDisplay(this);
@@ -354,7 +381,14 @@ public class Game{
 		sleep();
 		System.out.println("BOSS FIGHT!");
 		sleep();
-		monster = new EntityBoss();
+		if(dylanDrive){
+			//TODO add DylanBoss instead of this weird constructor!
+			monster = new EntityBoss("string");
+		}
+		else{
+			monster = new EntityBoss();
+		}
+		
 		battleActive();
 		if(player.isAlive()){
 			onPlayerWinBoss();
@@ -386,11 +420,9 @@ public class Game{
 				victim.onAttacked(damage);
 				if(attacker.getWeapon() != null){
 					if(attacker.getWeapon().hasType(POISON)){
-						System.out.println("WEAPON IS POISONOUS!");
 						double rand = Math.random();
 						if(rand < poisonChance){
 							victim.givePoison(poisonDamage, poisonTime);
-							System.out.println("POISONED!!!!!");
 						}
 					}
 				}
