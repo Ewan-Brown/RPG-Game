@@ -23,8 +23,7 @@ public class Game{
 	
 	private int poisonTime = 5;
 	private int poisonDamage = 5;
-	private double poisonChance = 1.0;
-	
+	private double poisonChance = 0.6;
 	String playerName;
 	boolean fastMode;
 	Difficulty difficulty;
