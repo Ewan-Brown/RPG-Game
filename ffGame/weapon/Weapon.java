@@ -9,7 +9,7 @@ public class Weapon {
     private String type;
     private Modifier modifier;
 	private Poison poisonStats;
-	private double poisonChance = 100;
+	private double poisonChance = 40;
 	
 	private int poisonDamage = 5;
 	private int totalTime = 2;
