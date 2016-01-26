@@ -9,11 +9,9 @@ public class EntityBoss extends EntityMonster {
 
 	public EntityBoss() {
 		super("Boss", BOSS_HEALTH, BOSS_DAMAGE, BOSS_DAMAGERANGE,0);
-		this.PrintStats();
 	}
-	public EntityBoss(String str){
-		super("Lord GabeN", 9999, 1, 1,10);
-		this.PrintStats();
+	public EntityBoss(String name,int health,int damage,int damageRange){
+		super(name,health,damage,damageRange,0);
 	}
 
 }

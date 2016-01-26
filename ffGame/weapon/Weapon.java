@@ -9,10 +9,12 @@ public class Weapon {
     private String type;
     private Modifier modifier;
 	private Poison poisonStats;
+	private Confuse confuseStats;
 	private double poisonChance = 40;
 	
 	private int poisonDamage = 5;
-	private int totalTime = 2;
+	private int poisonTime = 3;
+	private int confuseTime = 5;
 	private final int CONFUSE = WeaponConstants.TYPE_CONFUSE;
 	private final int POISON = WeaponConstants.TYPE_POISON;
 	private final int FLAME = WeaponConstants.TYPE_FLAME;
@@ -32,7 +34,10 @@ public class Weapon {
 	public void setType(int type,boolean setting){
 		attribute[type] = setting;
 		if(type == POISON){
-			poisonStats = new Poison(poisonDamage,totalTime);
+			poisonStats = new Poison(poisonDamage,poisonTime);
+		}
+		if(type == CONFUSE){
+			confuseStats = new Confuse(confuseTime);
 		}
 	}
 	public boolean hasType(int type){

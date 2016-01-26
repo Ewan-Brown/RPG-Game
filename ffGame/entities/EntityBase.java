@@ -1,7 +1,8 @@
 package entities;
 
 
-import effects.Poisoned;
+import effects.EffectConfused;
+import effects.EffectPoison;
 import main.GameMethods;
 import weapon.Weapon;
 
@@ -14,8 +15,10 @@ public class EntityBase{
 	protected boolean alive = true;
 	protected Weapon weapon;
 	protected int baseHealth;
+	protected int baseMissChance = 30;
 	protected int missChance = 30;
-	protected Poisoned poison = new Poisoned(0,0);
+	protected EffectPoison poison = new EffectPoison(0,0);
+	protected EffectConfused confused = new EffectConfused(0);
 	
 	public EntityBase(String name,int health,int damage, int damageRange){
 		this.name = name;
@@ -31,6 +34,9 @@ public class EntityBase{
 	public void	updateEffects(){
 		if(poison.isActive()){
 			this.poisonDamage();
+		}
+		if(confused.isActive()){
+			this.missChance = baseMissChance + 20;
 		}
 	}
 	public void givePoison(int dmg,int time){

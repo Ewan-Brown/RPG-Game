@@ -9,6 +9,8 @@ import display.DisplayStart;
 import display.DisplayStats;
 import entities.EntityBase;
 import entities.EntityBoss;
+import entities.EntityBossGaben;
+import entities.EntityMonsterGaben;
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.GameMethods;
@@ -132,7 +134,6 @@ public class Game{
 	}
 	public void sleep(){
 		if(fastMode == false){
-			
 			try {
 				Thread.sleep(sleepMillis);
 			} catch (InterruptedException e) {
@@ -251,20 +252,6 @@ public class Game{
 		this.playerName = values.playerName;
 		this.fastMode = values.fastMode;
 		this.sleepMillis = values.sleepMillis;
-		this.dylanDrive = displayDylan.tglbtnDylan.isSelected();
-		
-//		System.out.println("Fastmode? press 1 for fastmode");
-//		if (scan.nextInt() == 1){
-//			fastMode = true;
-//		}
-//		sleep();
-//		System.out.println("enter difficulty: 1 easy, 2 normal, 3 hard, 4 uber");
-//		int a = scan.nextInt();
-//		difficulty = Difficulty.getDifficulty(a);
-//		sleep();
-//		System.out.println("enter Player's name");
-//		playerName = scan.next();
-//		sleep();
 	}
 	
 	public void battleStart(){
@@ -273,8 +260,7 @@ public class Game{
 		player = null;
 		if(dylanDrive){
 			player = GameMethods.PlayerSpawn("John");
-			//TODO add a EntityDylan subclass of monster instead of this weird constructor
-			monster = new EntityMonster();
+			monster = new EntityMonsterGaben();
 			
 		}
 		else{
@@ -308,8 +294,7 @@ public class Game{
 			if(!monster.isAlive()){
 				monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
 				if(dylanDrive){
-					//TODO add a EntityDylan subclass of monster instead of this weird constructor
-					monster = new EntityMonster();
+					monster = new EntityMonsterGaben();
 				}
 				monster.PrintStats();
 				sleep();
@@ -381,8 +366,7 @@ public class Game{
 		System.out.println("BOSS FIGHT!");
 		sleep();
 		if(dylanDrive){
-			//TODO add DylanBoss instead of this weird constructor!
-			monster = new EntityBoss("string");
+			monster = new EntityBossGaben();
 		}
 		else{
 			monster = new EntityBoss();

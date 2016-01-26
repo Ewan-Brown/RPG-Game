@@ -7,7 +7,7 @@ import main.Game.Difficulty;
 
 import java.util.Random;
 
-import effects.Poisoned;
+import effects.EffectPoison;
 import entities.EntityBase;
 public class EntityMonster extends EntityBase {
 	public static int MONSTER_HEALTH = 80;
@@ -39,13 +39,6 @@ public class EntityMonster extends EntityBase {
 	public EntityMonster(String name, int health,int damage,int damageRange,double wepSpawn){
 		super(name,health,damage,damageRange);
 		if(this.shouldSpawnWeapon(wepSpawn)){
-			Weapon weapon = new Weapon();
-			this.giveWeapon(weapon);
-		}
-	}
-	public EntityMonster(){
-		super("Gaben Laser Beam",1,9001,1);
-		if(this.shouldSpawnWeapon(50)){
 			Weapon weapon = new Weapon();
 			this.giveWeapon(weapon);
 		}

@@ -52,9 +52,14 @@ public class DisplayDylan implements ActionListener{
 		tglbtnDylan = new JToggleButton("Dylan");
 		frame.getContentPane().add(tglbtnDylan, BorderLayout.CENTER);
 	}
-
+	
+	public void updateDisplay(Game game){
+		this.game = game;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		game.dylanDrive = this.tglbtnDylan.isSelected();
 	}
 
 }
