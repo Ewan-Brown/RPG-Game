@@ -1,6 +1,8 @@
 # RPG-Game
 Ewan's RPG Game project
 
+Do whatever the heck you want with this, in fact i'd be amazed if you found a use for the software here.
+
 A boring java game made by Ewan Brown with little to no user input, the game pretty much plays itself.
 Made for reasons of obtaining more knawledge
 
