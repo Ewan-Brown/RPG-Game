@@ -14,6 +14,7 @@ import entities.EntityMonsterGaben;
 import entities.EntityMonster;
 import entities.EntityPlayer;
 import main.GameMethods;
+import weapon.Weapon;
 import weapon.WeaponConstants;
 
 
@@ -40,7 +41,6 @@ public class Game{
 	static Game game;
 	//TODO TEMP VALUES FOR TESTING! >>
 	double weaponSpawn = 100.0;
-	double missChance = 0.0;
 	boolean paused = false;
 	int monsterMisses;
 	int playerMisses;
@@ -109,101 +109,16 @@ public class Game{
 		}
 		
 	}
-	
-	public boolean didMiss(){
-		double a = Math.random();
-		if (a < this.missChance){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-	
-	
-	
-	public double getMissChance(){
-		return this.missChance;
-	}
-	public double getWeaponSpawn(){
-		return this.weaponSpawn;
-	}
 	public double getMult(){
 		double b  = difficulty.getMult() * currentStage.getMult();
 		return b;
-	}
-	public void sleep(){
-		if(fastMode == false){
-			try {
-				Thread.sleep(sleepMillis);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	public void checkPaused(){
-		do{
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}while(paused == true);
 	}
 	public static void main(String[] args) {
 		game = new Game();
 		game.runGame();
 	}
-	public void runDisplays(){
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					displayFighters = new DisplayFighters();
-					displayFighters.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					displayDylan = new DisplayDylan();
-					displayDylan.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					displayStats = new DisplayStats();
-					displayStats.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					displayStart = new DisplayStart();
-					displayStart.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					logs = new DisplayLogs();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public double getWeaponSpawn(){
+		return this.weaponSpawn;
 	}
 	public void runGame(){
 		
@@ -214,8 +129,7 @@ public class Game{
 			gameStart();
 			currentStage = new Stage();
 			battleStart();
-			displayFighters.updateDisplay(this);
-			displayStats.updateDisplay(this);
+			updateDisplays();
 			System.out.println(getMult()+"");
 			while(GameOn == true){
 				if(currentStage.getStageNum() == currentStage.getFinalStage()){
@@ -236,6 +150,59 @@ public class Game{
 			}
 		}
 	}
+	public void runDisplays(){
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						displayFighters = new DisplayFighters();
+						displayFighters.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						displayDylan = new DisplayDylan();
+						displayDylan.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						displayStats = new DisplayStats();
+	
+	//TODO taken out stats for now because it's just too many windows! also not usefull atm. might just throw stats into fighter display
+	//					displayStats.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						displayStart = new DisplayStart();
+						displayStart.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						logs = new DisplayLogs();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
 	public Game(){}
 	public void gameStart(){
 		/* I dont know why but without this sleep, a 
@@ -273,14 +240,6 @@ public class Game{
 		sleep();
 		
 	}
-	public void updateEffects(){
-		player.updateEffects();
-		monster.updateEffects();
-	}
-	public void updateDisplays(){
-		displayFighters.updateDisplay(this);
-		displayStats.updateDisplay(this);
-	}
 	public void battleActive(){
 		if(monster.getWeapon() != null){
 		}
@@ -290,6 +249,10 @@ public class Game{
 		sleep();
 		System.out.println(" ");
 		sleep();
+		//XXX 
+		if(dylanDrive){
+			System.out.println("DYLANNNNNNNNNNNN");
+		}
 		if(!(monster instanceof EntityBoss)){
 			if(!monster.isAlive()){
 				monster = GameMethods.RandomMonster(getMult(),getWeaponSpawn());
@@ -306,28 +269,27 @@ public class Game{
 		boolean f2 = true;
 		
 		do{
-//			if(paused == false){
+			//XXX 
+			if(dylanDrive){
+				System.out.println("DYLANNNNNNNNNNNN");
+			}
+
 			checkPaused();
-			updateEffects();
 			sleep();
 			tryAttack(player, monster);
 			updateDisplays();
+			sleep();
 			checkPaused();
+			updateEffects();
+			updateDisplays();
 			sleep();
 			tryAttack(monster, player);
 			updateDisplays();
+			sleep();
 			updateEffects();
 			updateDisplays();
 			f1 = player.isAlive();
 			f2 = monster.isAlive();
-//			}
-//			else{
-//				try {
-//					Thread.sleep(100);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
 			
 			
 		}while(f1 && f2);
@@ -342,22 +304,6 @@ public class Game{
 			a = false;
 		}
 		return a;
-	}
-	public void onPlayerLose(){
-		sleep();
-		System.out.println("Game Over!");
-		sleep();
-		GameMethods.playerLossStats(player, monster,currentStage);
-	}
-	public void onPlayerWin(){
-		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
-		sleep();
-		System.out.println(" ");
-		currentStage.onMonsterKilled(player);
-		System.out.println(" ");
-		sleep();
-		player.onKillMonster(monster);
-		displayFighters.updateDisplay(this);
 	}
 	public void BossBattle(){
 		sleep();
@@ -381,6 +327,22 @@ public class Game{
 		}
 		
 	}
+	public void onPlayerLose(){
+		sleep();
+		System.out.println("Game Over!");
+		sleep();
+		GameMethods.playerLossStats(player, monster,currentStage);
+	}
+	public void onPlayerWin(){
+		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
+		sleep();
+		System.out.println(" ");
+		currentStage.onMonsterKilled(player);
+		System.out.println(" ");
+		sleep();
+		player.onKillMonster(monster);
+		displayFighters.updateDisplay(this);
+	}
 	public void onPlayerWinBoss(){
 		sleep();
 		System.out.println(player.getName()+" has defeated "+monster.getName()+"!");
@@ -390,6 +352,34 @@ public class Game{
 		player.PrintStats();
 	}
 	
+	public void sleep(){
+		if(fastMode == false){
+			try {
+				Thread.sleep(sleepMillis);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	public void checkPaused(){
+		do{
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}while(paused == true);
+	}
+	public void updateDisplays(){
+		displayFighters.updateDisplay(this);
+		displayStats.updateDisplay(this);
+		displayDylan.updateDisplay(this);
+	}
+	public void updateEffects(){
+		player.updateEffects();
+		monster.updateEffects();
+	}
 	public void tryAttack(EntityBase attacker, EntityBase victim){
 		if(attacker.isAlive()){
 			if(attacker instanceof EntityPlayer){
@@ -402,11 +392,14 @@ public class Game{
 			if((damage > 0)){
 				victim.onAttacked(damage);
 				if(attacker.getWeapon() != null){
+					double rand = Math.random();
 					if(attacker.getWeapon().hasType(POISON)){
-						double rand = Math.random();
 						if(rand < poisonChance){
 							victim.givePoison(poisonDamage, poisonTime);
 						}
+					}
+					if(attacker.getWeapon().hasType(CONFUSE)){
+						victim.givePoison(poisonDamage, poisonTime);
 					}
 				}
 			}

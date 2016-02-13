@@ -16,7 +16,7 @@ public class EntityBase{
 	protected Weapon weapon;
 	protected int baseHealth;
 	protected int baseMissChance = 30;
-	protected int missChance = 30;
+	protected int missChance;
 	protected EffectPoison poison = new EffectPoison(0,0);
 	protected EffectConfused confused = new EffectConfused(0);
 	
@@ -26,17 +26,23 @@ public class EntityBase{
 		this.baseHealth = health;
 		this.damage = damage;
 		this.damageRange = damageRange;
+		this.missChance = baseMissChance;
 	}
 	public void onDeath(){
 		this.alive = false;
 		System.out.println(name+" died!");
 	}
 	public void	updateEffects(){
+		poison.tick();
+		confused.tick();
 		if(poison.isActive()){
 			this.poisonDamage();
 		}
 		if(confused.isActive()){
 			this.missChance = baseMissChance + 20;
+		}
+		else{
+			this.missChance = baseMissChance;
 		}
 	}
 	public void givePoison(int dmg,int time){
@@ -83,7 +89,6 @@ public class EntityBase{
 		return (getWeapon() == null) ? getRawDamage() : getRawDamage() + getWeaponDamage();
 	}
 	public Weapon getWeapon() {
-		// TODO Auto-generated method stub
 		return this.weapon;
 	}
 	

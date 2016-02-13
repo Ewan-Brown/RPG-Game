@@ -10,7 +10,8 @@ public class Weapon {
     private Modifier modifier;
 	private Poison poisonStats;
 	private Confuse confuseStats;
-	private double poisonChance = 40;
+	private double poisonChance = 30;
+	private double confuseChance = 20;
 	
 	private int poisonDamage = 5;
 	private int poisonTime = 3;
@@ -27,6 +28,9 @@ public class Weapon {
 		this.name = modifier.name+" "+type;
 		if(spawnPoison() == true){
 			setType(POISON,true);
+		}
+		if(spawnConfuse() == true){
+			setType(CONFUSE,true);
 		}
 		this.name = getTypeString() + name;
 		System.out.println(name + " Created!");
@@ -63,6 +67,15 @@ public class Weapon {
 	private boolean spawnPoison(){
 		double rand = Math.random();
 		if (rand * 100 < poisonChance){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public boolean spawnConfuse() {
+		double rand = Math.random();
+		if(rand * 100 < confuseChance){
 			return true;
 		}
 		else{

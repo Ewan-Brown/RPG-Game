@@ -13,6 +13,9 @@ public class EntityMonster extends EntityBase {
 	public static int MONSTER_HEALTH = 80;
 	public static int MONSTER_DAMAGE = 15;
 	public static int MONSTER_DAMAGERANGE = 10;
+//	public static int MONSTER_HEALTH = 80000;
+//	public static int MONSTER_DAMAGE = 0;
+//	public static int MONSTER_DAMAGERANGE = 0;
 	static String[] MONSTER_NAMES = {"Zombie","Skeleton","Wraith","Bandit","Demon","Platypus","Slime","Cyclops","Dragon","Ogre","Vampire","WereWolf","Unicorn","Ghost","Giant Spider","Deep-Space Kraken","Wendigo","The Thing","Satanic Cultist","Goblin","Weeaboo","WHATARETHOOOSE?!?","Ninja Pirate","Slenderman","Rabid Butterfly","The Blob","Giant","Orc","999","Bat","Pokeman","Alien","Barbarian","Bee Swarm","Scorpion","Wolf Pack","Rogue Wizard","ERROR 404"};
 	
 	

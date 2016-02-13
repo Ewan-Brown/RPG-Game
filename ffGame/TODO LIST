@@ -13,7 +13,7 @@ FIX:
 WIP:
 	TEST POISON EFFECT/ STACKTRACE
 		-Implement other Effects
-	DisplayFighters - Redo Health Display! (Total vs Actual)
+	Figure out how to make windows open so that they can all fit on the screen. might have to assimilate warning/dylan and stats
 
 TODO:
 	

@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class DisplayFighters implements ActionListener{
 
@@ -50,6 +52,10 @@ public class DisplayFighters implements ActionListener{
 	private JTextField txtMult;
 	private JLabel lblMultiplier ;
 	private JLabel lblStage;
+	private JTextField txtPlayerIsConfused;
+	private JTextField txtMonsterIsConfused;
+	private JLabel lblMonsterIsConfused;
+	private JLabel lblPlayerIsConfused;
 
 	/**
 	 * Launch the application.
@@ -297,6 +303,24 @@ public class DisplayFighters implements ActionListener{
 		txtMult.setBounds(349, 359, 116, 22);
 		frame.getContentPane().add(txtMult);
 		txtMult.setColumns(10);
+		
+		lblPlayerIsConfused = new JLabel("Confused");
+		lblPlayerIsConfused.setBounds(90, 287, 56, 16);
+		frame.getContentPane().add(lblPlayerIsConfused);
+		
+		lblMonsterIsConfused = new JLabel("Confused");
+		lblMonsterIsConfused.setBounds(598, 287, 56, 16);
+		frame.getContentPane().add(lblMonsterIsConfused);
+		
+		txtPlayerIsConfused = new JTextField();
+		txtPlayerIsConfused.setBounds(64, 306, 116, 22);
+		frame.getContentPane().add(txtPlayerIsConfused);
+		txtPlayerIsConfused.setColumns(10);
+		
+		txtMonsterIsConfused = new JTextField();
+		txtMonsterIsConfused.setColumns(10);
+		txtMonsterIsConfused.setBounds(572, 306, 116, 22);
+		frame.getContentPane().add(txtMonsterIsConfused);
 
 
 	}

@@ -50,6 +50,7 @@ public class DisplayDylan implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		tglbtnDylan = new JToggleButton("Dylan");
+		tglbtnDylan.addActionListener(this);
 		frame.getContentPane().add(tglbtnDylan, BorderLayout.CENTER);
 	}
 	
@@ -59,7 +60,8 @@ public class DisplayDylan implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		game.dylanDrive = this.tglbtnDylan.isSelected();
+		game.dylanDrive = tglbtnDylan.isSelected();
+		System.out.println("DYLANIFIED"+game.dylanDrive);
 	}
 
 }
